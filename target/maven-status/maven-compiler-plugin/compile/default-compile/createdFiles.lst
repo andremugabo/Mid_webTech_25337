@@ -1,0 +1,17 @@
+models\Membership$Status.class
+models\RoleType.class
+controller\UserController.class
+models\User.class
+dao\UserDao.class
+models\Shelf.class
+models\Book.class
+models\Person.class
+models\Membership.class
+util\HibernateUtil.class
+models\Location.class
+models\Borrower.class
+models\BookStatus.class
+models\MembershipType.class
+models\Gender.class
+models\Room.class
+models\LocationType.class

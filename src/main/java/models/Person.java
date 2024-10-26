@@ -1,0 +1,91 @@
+package models;
+
+import java.util.UUID;
+
+import javax.persistence.*;
+
+@MappedSuperclass
+public abstract class Person {
+
+    @Id
+    @GeneratedValue
+    private UUID personId;
+    
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+    
+
+    @Enumerated(EnumType.STRING)
+    private GenderType gender;
+
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted = false; 
+    
+    public Person() {}
+
+    public Person(UUID personId, String firstName, String lastName, GenderType genderType, String phoneNumber) {
+        this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = genderType;
+        this.phoneNumber = phoneNumber;
+    }
+
+    // Getters and Setters
+    public UUID getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(UUID personId) {
+        this.personId = personId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public GenderType getGender() {
+        return gender;
+    }
+
+    public void setGender(GenderType genderType) {
+        this.gender = genderType;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+}
+
+
