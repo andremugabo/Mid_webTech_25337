@@ -1,0 +1,200 @@
+@charset "ISO-8859-1";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+html, body {
+    height: 100%; 
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    background-color: #f4f4f4;
+}
+/* Header */
+header {
+    background: #1b3058;
+    color: #fff;
+    padding: 5px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff9800; 
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 5px;
+}
+
+.user-actions .btn {
+    background-color: #f1c40f;
+    color: #004080;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Login Section */
+.login {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Use full viewport height */
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.login-container {
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* Background Image */
+.login-image {
+    flex: 1;
+    background-image: url('../images/signup-image.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Ensure child elements are positioned relative to this */
+}
+
+.login-overlay {
+    position: absolute; /* Position the text absolutely within the image */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust positioning for true center */
+    color: white; /* Change color for better visibility */
+    font-size: 2em; /* Adjust size as needed */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional shadow for readability */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 10px 20px; /* Add padding for aesthetics */
+    border-radius: 5px; /* Rounded corners */
+}
+
+
+
+/* Form */
+.login-form {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+
+.login-form h2 {
+    color: #1b3058;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+.account-message {
+	margin-top: 15px;
+	font-size: 16px;
+	color: #333;
+	text-align: center;
+}
+
+.account-message a {
+	color: #007bff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.account-message a:hover {
+	text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #1b3058;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto; 
+}
+
+footer a {
+    color: #ff9800;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

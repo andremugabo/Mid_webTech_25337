@@ -27,7 +27,7 @@ public class HibernateUtil {
                         settings.setProperty(Environment.USER, "root");
                         settings.setProperty(Environment.PASS, "");
                         settings.setProperty(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
-                        settings.setProperty(Environment.HBM2DDL_AUTO, "update"); 
+                        settings.setProperty(Environment.HBM2DDL_AUTO, "create"); 
                         settings.setProperty(Environment.SHOW_SQL, "true");
 
                         configuration.setProperties(settings);

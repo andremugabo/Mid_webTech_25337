@@ -18,6 +18,7 @@ body {
 	background-color: #f4f4f4; 
 }
 
+/* Header */
 header {
 	background: #1b3058;
 	color: #fff;
@@ -61,6 +62,8 @@ header {
 	width: 40px;
 	margin-right: 5px;
 }
+
+
 
 /* Banner Section */
 .banner {
@@ -112,57 +115,92 @@ header {
 	margin-bottom: 5px;
 }
 
+/* About Section Styling */
 .about {
-    padding: 20px;
-    text-align: center; 
+    padding: 60px 20px;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
 }
 
-.about-image {
-    width: 100%; 
-    max-width: 800px; 
-    margin: 20px 0; 
+.about h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    color: #555;
 }
 
 .vision-mission {
-	margin: 20px 0;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.mission-vision-box {
+    max-width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.mission-vision-box h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.mission-vision-box p {
+    font-size: 1rem;
+    color: #666;
 }
 
 .card-container {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
-    gap: 30px; 
-    margin-top: 40px; 
-    flex-wrap: wrap; 
 }
 
 .card {
-    background: #ffffff; 
-    border: 1px solid #ddd; 
-    border-radius: 12px; 
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
-    flex: 1 1 240px; 
-    max-width: 300px; 
-    text-align: left; 
-    transition: transform 0.3s, box-shadow 0.3s; 
+    width: 240px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card h4 {
-    margin-bottom: 15px; 
-    color: #2c3e50; 
-    font-size: 1.5em; 
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .card p {
-    font-size: 0.95em; 
-    line-height: 1.5; 
-    color: #7f8c8d; 
+    font-size: 1rem;
+    color: #555;
 }
+
+.services-offered, .core-values {
+    margin-bottom: 40px;
+}
+
 
 .core-values, .services-offered {
     list-style-type: none; 
@@ -183,29 +221,100 @@ header {
     left: 0; 
 }
 
-.contact-info {
-    list-style-type: none; 
-    padding: 0; 
-    margin-top: 15px; 
+.contact {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 40px 20px; /* Padding for spacing */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.contact-info li {
-    margin-bottom: 10px; 
-    display: flex; 
-    align-items: center; 
+.contact h2 {
+    text-align: center; /* Centered heading */
+    font-size: 2em; /* Larger font size */
+    color: #333; /* Dark text color */
+    margin-bottom: 20px; /* Space below heading */
 }
 
-.contact-info li i {
-    color: #007bff; 
-    margin-right: 10px;
+.contact p {
+    text-align: center; /* Centered paragraph */
+    color: #666; /* Lighter text color for contrast */
+    margin-bottom: 20px; /* Space below paragraph */
+}
+
+.contact-details {
+    text-align: center; /* Centered contact details */
+    margin-bottom: 30px; /* Space below contact details */
+}
+
+.contact-details h3 {
+    font-size: 1.5em; /* Size for contact heading */
+    color: #333; /* Dark text color */
+}
+
+.contact-details p {
+    margin: 5px 0; /* Vertical space between contact details */
+}
+
+.contact-container {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Column layout */
+    align-items: center; /* Center items horizontally */
+}
+
+.contact-form {
+    width: 100%; /* Full width */
+    max-width: 600px; /* Maximum width for form */
+    background: #fff; /* White background for the form */
+    padding: 20px; /* Inner padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for form */
+}
+
+.contact-form label {
+    display: block; /* Block layout for labels */
+    margin-bottom: 5px; /* Space below labels */
+    color: #333; /* Dark text for labels */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Inner padding */
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners for inputs */
+    font-size: 1em; /* Font size for readability */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #007BFF; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+.btn {
+    background-color: #007BFF; /* Button color */
+    color: #fff; /* White text */
+    padding: 10px 20px; /* Button padding */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.map-container {
+    margin-top: 20px; /* Space above map */
+    width: 100%; /* Full width for the map */
+    max-width: 600px; /* Maximum width for the map */
+    border-radius: 8px; /* Rounded corners for map */
+    overflow: hidden; /* Clip any overflow */
 }
 
 
-
-.contact-info {
-    list-style-type: none; 
-    padding: 0; 
-}
 
 .card h4 {
 	margin-bottom: 10px;
@@ -242,71 +351,134 @@ ul li {
 }
 
 .user-actions .btn {
-	background: #007bff;
-	color: #fff;
-	padding: 10px 20px;
-	text-decoration: none;
-	border-radius: 5px;
-	transition: background 0.3s;
+    background-color: #f1c40f;
+    color: #004080;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
 }
+
 
 .user-actions .btn:hover {
 	background: #0056b3;
 }
 
 /* Hero Section */
+
 .hero {
-	background: url('../images/library-hero.jpg') center/cover no-repeat;
-	color: #fff;
-	text-align: center;
-	padding: 100px 20px;
+    background: url('../images/library-background.jpg') center/cover no-repeat;
+    color: #ffffff;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
 }
 
 .hero h2 {
-	font-size: 2.5em;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color:white;
 }
 
 .hero p {
-	font-size: 1.2em;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
 .hero-btn {
-	background: #ff9800;
-	color: #fff;
-	padding: 10px 20px;
-	border-radius: 5px;
-	text-decoration: none;
-	transition: background 0.3s;
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #ffcc00;
+    color: #333333;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .hero-btn:hover {
-	background: #e68900;
+    background-color: #ffaa00;
+    transform: translateY(-3px); 
 }
 
-/* Features Section */
+
+/* Features Section Styling */
 .features {
-	max-width: 1200px;
-	margin: 50px auto;
-	text-align: center;
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f7f7f7;
+    color: #333;
 }
 
 .features h3 {
-	margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.feature-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .feature {
-	display: inline-block;
-	width: 30%;
-	margin: 20px 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.feature h4 {
-	margin-top: 10px;
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .feature i {
-	font-size: 50px;
-	color: #007bff;
+    font-size: 2.5rem;
+    color: #ffcc00;
+    margin-bottom: 15px;
+}
+
+.feature h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
 }
 
 
@@ -369,18 +541,18 @@ h2 {
 
 
 .book-item {
-    width: 200px; /* Sets the width for each book item */
-    height: 300px; /* Adjust height as needed */
-    background-size: cover; /* Ensures the background image covers the entire item */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
+    width: 200px; 
+    height: 300px; 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Aligns details to the bottom */
-    color: #fff; /* Sets text color to stand out on the image */
+    justify-content: flex-end; 
+    color: #fff; 
     padding: 10px;
-    border-radius: 8px; /* Slightly rounds corners for a polished look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .book-details {
@@ -460,12 +632,46 @@ form button:hover {
 }
 
 .contact {
-	max-width: 1200px;
-	margin: 50px auto;
-	padding: 20px;
-	background: #fff;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   /* background-color: #f0f4f8; */
+    padding: 40px 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.contact h2 {
+    text-align: center; /* Centered heading */
+    font-size: 2em; /* Larger font size */
+    color: #2c3e50; /* Dark blue-gray for text */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.contact p {
+    text-align: center; /* Centered paragraph */
+    color: #34495e; /* Darker gray for paragraph text */
+    margin-bottom: 20px; /* Space below paragraph */
+}
+
+.contact-details {
+    text-align: center; /* Centered contact details */
+    margin-bottom: 30px; /* Space below contact details */
+}
+
+.contact-details h3 {
+    font-size: 1.5em; /* Size for contact heading */
+    color: #2c3e50; /* Dark blue-gray for headings */
+}
+
+.contact-details p {
+    margin: 5px 0; /* Vertical space between contact details */
+    color: #7f8c8d; /* Light gray for contact details */
+}
+.contact-details a {
+    color: #1b3058; /* Change link color */
+    text-decoration: none; /* Optional: remove underline */
+}
+
+.contact-details a:hover {
+    text-decoration: underline; /* Optional: add underline on hover */
 }
 
 .contact-container {
@@ -475,40 +681,58 @@ form button:hover {
 }
 
 .contact-form {
-	flex: 1;
-	margin-right: 20px;
-}
-
-.map-container {
-	flex: 1;
-	min-width: 300px;
+    width: 100%; /* Full width */
+    max-width: 600px; /* Maximum width for form */
+    background: #ffffff; /* White background for the form */
+    padding: 20px; /* Inner padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for form */
 }
 
 .contact-form label {
-	margin-bottom: 5px;
-	font-weight: bold;
+    display: block; /* Block layout for labels */
+    margin-bottom: 5px; /* Space below labels */
+    color: #2c3e50; /* Dark blue-gray for labels */
 }
 
-.contact-form input, .contact-form textarea {
-	padding: 10px;
-	margin-bottom: 15px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	width: 100%; 
+.contact-form input,
+.contact-form textarea {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Inner padding */
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #bdc3c7; /* Light gray border */
+    border-radius: 4px; /* Rounded corners for inputs */
+    font-size: 1em; /* Font size for readability */
+    transition: border-color 0.3s; /* Smooth transition for border color */
 }
 
-.contact-form button {
-	background: #35424a;
-	color: #ffffff;
-	padding: 10px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background 0.3s;
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #3498db; /* Blue border on focus */
+    outline: none; /* Remove default outline */
 }
 
-.contact-form button:hover {
-	background: #4a545f;
+.btn {
+    background-color: #3498db; /* Bright blue button */
+    color: #ffffff; /* White text */
+    padding: 10px 20px; /* Button padding */
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.3s; 
+}
+
+.btn:hover {
+    background-color: #2980b9; 
+    transform: scale(1.05); 
+}
+
+.map-container {
+    margin-top: 20px; 
+    width: 100%; 
+    max-width: 600px; 
+    border-radius: 8px; 
+    overflow: hidden; 
 }
 
 .login {
@@ -595,26 +819,22 @@ form button:hover {
 	margin-top: 15px;
 }
 
-/* Footer Styles */
+
+/* Footer */
 footer {
-	background: #1b3058;
-	color: #fff;
-	text-align: center;
-	padding: 20px 0;
+    background-color: #1b3058;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
 }
 
-.footer-links {
-	list-style: none;
-	padding: 0;
+footer a {
+    color: #ff9800;
 }
 
-.footer-links li {
-	display: inline;
-	margin: 0 10px;
-}
-
-.footer-links a {
-	color: #fff;
+footer a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -626,6 +846,9 @@ footer {
     .card {
         max-width: 90%; 
         margin-bottom: 20px; 
+    }
+    .contact-container {
+        padding: 10px; /* Less padding on smaller screens */
     }
 }
 

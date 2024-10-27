@@ -1,5 +1,5 @@
 package models;
 
 public enum RoleType {
-	  STUDENT, MANAGER, TEACHER, DEAN, HOD, LIBRARIAN
+	  STUDENT, MANAGER, TEACHER, DEAN, HOD, LIBRARIAN, ADMIN
 }

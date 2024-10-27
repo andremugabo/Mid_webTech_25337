@@ -75,7 +75,7 @@ public class UserDao {
     }
 
     // Soft delete a user by ID
-    @SuppressWarnings("deprecation")
+    
 	public void softDeleteUser(UUID userId) {
         Transaction transaction = null;
         Session session = sessionFactory.openSession();

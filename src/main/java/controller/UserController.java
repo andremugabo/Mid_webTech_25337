@@ -4,12 +4,15 @@ import dao.UserDao;
 import models.RoleType;
 import models.GenderType;
 import models.User;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet("/user")
@@ -132,9 +135,15 @@ public class UserController extends HttpServlet {
         response.getWriter().write("User soft deleted successfully");
     }
 
-    // Count users
+    
+  
+ 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long userCount = userDao.countUsers();
-        response.getWriter().write("Total users: " + userCount);
+        UserDao userDao = new UserDao();
+        List<User> userList = userDao.listAllUsers();
+        request.setAttribute("userList", userList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("manageUsers.jsp");
+        dispatcher.forward(request, response);
     }
+
 }

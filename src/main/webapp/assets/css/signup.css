@@ -13,112 +13,182 @@ a {
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f4f4;
 }
 
+/* Header */
 header {
-    background: #1b3058;
-    color: #fff;
-    padding: 5px 0;
+	background: #1b3058;
+	color: #fff;
+	padding: 5px 0;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
+	list-style: none;
+	display: flex;
 }
 
 .nav-links li {
-    margin: 0 15px;
+	margin: 0 15px;
 }
 
 .nav-links a {
-    color: #fff;
-    transition: color 0.3s;
+	color: #fff;
+	transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #ff9800; 
+	color: #ff9800; 
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
 }
 
 .logo img {
-    width: 40px;
-    margin-right: 5px;
+	width: 40px;
+	margin-right: 5px;
+}
+
+
+.user-actions .btn {
+    background-color: #f1c40f;
+    color: #004080;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
 }
 
 /* Sign-Up Section */
 .signup {
-    max-width: 600px; /* Limit the width of the sign-up form */
-    margin: 50px auto; /* Center the form */
-    background: white; /* Background for the form */
-    padding: 20px; /* Padding inside the form */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
 }
 
-.signup h2 {
-    text-align: center; /* Center the heading */
-    color: #1b3058; /* Heading color */
-    margin-bottom: 20px; /* Space below the heading */
+.signup-container {
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 8px;
 }
 
-.signup label {
-    display: block; /* Each label takes full width */
-    margin-bottom: 5px; /* Space below each label */
-    color: #333; /* Label color */
+/* Background Image */
+.signup-image {
+    flex: 1;
+    background-image: url('../images/signup-image.jpg'); /* Change to your image path */
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Ensure child elements are positioned relative to this */
 }
 
-.signup input, 
-.signup select {
-    width: 100%; /* Full width for inputs and selects */
-    padding: 10px; /* Padding inside inputs */
-    margin-bottom: 15px; /* Space below each input */
-    border: 1px solid #ccc; /* Border for inputs */
-    border-radius: 4px; /* Rounded corners for inputs */
-}
-
-.signup button {
-    width: 100%; /* Full width for button */
-    padding: 10px; /* Padding inside button */
-    background: #007bff; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* Remove default border */
+.signup-overlay {
+    position: absolute; /* Position the text absolutely within the image */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust positioning for true center */
+    color: white; /* Change color for better visibility */
+    font-size: 2em; /* Adjust size as needed */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional shadow for readability */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 10px 20px; /* Add padding for aesthetics */
     border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background 0.3s; /* Transition for hover effect */
 }
 
-.signup button:hover {
-    background: #0056b3; /* Darker shade on hover */
+
+/* Form */
+.signup-form {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
 }
 
+.signup-form h2 {
+    color: #1b3058;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.signup-form input,
+.signup-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.signup-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.signup-form button:hover {
+    background-color: #0056b3;
+}
+.account-message {
+	margin-top: 15px;
+	font-size: 16px;
+	color: #333;
+	text-align: center;
+}
+
+.account-message a {
+	color: #007bff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.account-message a:hover {
+	text-decoration: underline;
+}
+/* Footer */
 footer {
-    text-align: center; /* Center footer text */
-    padding: 20px; /* Padding for footer */
-    background: #1b3058; /* Footer background */
-    color: #fff; /* Footer text color */
+    background-color: #1b3058;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
 }
 
 footer a {
-    color: #ff9800; /* Link color in footer */
+    color: #ff9800;
 }
 
 footer a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
 }
