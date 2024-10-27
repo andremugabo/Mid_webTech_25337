@@ -119,21 +119,80 @@ Ensure you have the following installed:
 ## Project Structure
 
 ```
-auca-library-system/
-│
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── model/
-│   │   │   └── controller/
-│   │   └── webapp
-│   │       └── WEB-INF/
-│   │       └── views/
-│   └── test
+Mid_WebTech_25337/
 │
 ├── pom.xml
-├── README.md
-├── schema.sql
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │               ├── model/
+│   │   │               │   ├── Book.java
+│   │   │               │   ├── Borrower.java
+│   │   │               │   ├── Location.java
+│   │   │               │   ├── Membership.java
+│   │   │               │   ├── MembershipType.java
+│   │   │               │   ├── Room.java
+│   │   │               │   ├── Shelf.java
+│   │   │               │   └── User.java
+│   │   │               │
+│   │   │               ├── dao/
+│   │   │               │   ├── BookDAO.java
+│   │   │               │   ├── BorrowerDAO.java
+│   │   │               │   ├── LocationDAO.java
+│   │   │               │   ├── MembershipDAO.java
+│   │   │               │   ├── MembershipTypeDAO.java
+│   │   │               │   ├── RoomDAO.java
+│   │   │               │   ├── ShelfDAO.java
+│   │   │               │   └── UserDAO.java
+│   │   │               │
+│   │   │               ├── service/
+│   │   │               │   ├── BookService.java
+│   │   │               │   ├── BorrowerService.java
+│   │   │               │   ├── LocationService.java
+│   │   │               │   ├── MembershipService.java
+│   │   │               │   ├── MembershipTypeService.java
+│   │   │               │   ├── RoomService.java
+│   │   │               │   ├── ShelfService.java
+│   │   │               │   └── UserService.java
+│   │   │               │
+│   │   │               └── controller/
+│   │   │                   ├── BookController.java
+│   │   │                   ├── BorrowerController.java
+│   │   │                   ├── LocationController.java
+│   │   │                   ├── MembershipController.java
+│   │   │                   ├── MembershipTypeController.java
+│   │   │                   ├── RoomController.java
+│   │   │                   ├── ShelfController.java
+│   │   │                   └── UserController.java
+│   │   │
+│   │   └── resources/
+│   │       ├── hibernate.cfg.xml
+│   │       └── log4j.properties
+│   │
+│   └── webapp/
+│       ├── WEB-INF/
+│       │   ├── web.xml
+│       │   └── views/
+│       │       ├── book.jsp
+│       │       ├── borrower.jsp
+│       │       ├── location.jsp
+│       │       ├── membership.jsp
+│       │       ├── membershipType.jsp
+│       │       ├── room.jsp
+│       │       ├── shelf.jsp
+│       │       └── user.jsp
+│       │
+│       ├── css/
+│       │   └── styles.css
+│       │
+│       ├── js/
+│       │   └── scripts.js
+│       │
+│       └── index.jsp
+│
+└── README.md
+
 ```
 
 ---
