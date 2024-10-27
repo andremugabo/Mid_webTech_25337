@@ -200,7 +200,8 @@ Mid_WebTech_25337/
 ## Screenshots
 
 ### 1. Login Page
-![Login Page](https://via.placeholder.com/800x400)
+<img width="673" alt="image" src="https://github.com/user-attachments/assets/e6c3a8b5-f63d-4e8b-9778-6d60df895368">
+
 
 ### 2. User Dashboard
 ![Dashboard](https://via.placeholder.com/800x400)
