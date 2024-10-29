@@ -1,0 +1,157 @@
+@charset "ISO-8859-1";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+header {
+    background: #1b3058;
+    color: #fff;
+    padding: 5px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff9800;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 5px;
+}
+
+.user-actions {
+    color: #f1c40f;
+}
+
+.user-actions .btn {
+    background-color: #f1c40f;
+    color: #004080;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Dashboard Section */
+.dashboard {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    flex: 1;
+    background-color: #f9f9f9;
+}
+
+.dashboard-container {
+    width: 80%;
+    max-width: 900px;
+}
+
+.dashboard-container h2 {
+    color: #1b3058;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #1b3058;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 45%;
+    margin: 10px;
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.quick-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.quick-actions .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.quick-actions .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #1b3058;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+footer a {
+    color: #ff9800;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

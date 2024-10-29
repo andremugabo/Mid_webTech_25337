@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import util.PasswordUtil;
+
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
@@ -34,7 +36,9 @@ public class UserController extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String genderParam = request.getParameter("gender");
-
+        
+        String hashedPassword = PasswordUtil.hashPassword(password);
+        
         // Convert role from String to RoleType
         RoleType role = null;
         if (roleParam != null) {
@@ -42,7 +46,7 @@ public class UserController extends HttpServlet {
                 role = RoleType.valueOf(roleParam.toUpperCase());
             } catch (IllegalArgumentException e) {
                 response.getWriter().write("Invalid role provided");
-                return; // Exit if the role is invalid
+                return; 
             }
         }
 
@@ -53,31 +57,36 @@ public class UserController extends HttpServlet {
                 genderType = GenderType.valueOf(genderParam.toUpperCase());
             } catch (IllegalArgumentException e) {
                 response.getWriter().write("Invalid gender provided");
-                return; // Exit if the gender is invalid
+                return; 
             }
         }
 
-        // Additional validation for input
+        
         if (userName == null || password == null || role == null || phoneNumber == null || firstName == null || lastName == null || genderType == null) {
             response.getWriter().write("All fields are required");
-            return; // Exit if any required fields are missing
+            return; 
         }
 
         User user = new User();
         user.setUserName(userName);
-        user.setPassword(password); // Store hashed password instead
+        user.setPassword(hashedPassword); 
         user.setRole(role);
         user.setPhoneNumber(phoneNumber);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setGender(genderType); // Set gender from GenderType
-        user.setDeleted(false); // Default to false
+        user.setGender(genderType); 
+        user.setDeleted(false); 
 
         if (!userDao.checkIfUserExists(userName)) {
             userDao.createUser(user);
-            response.getWriter().write("User created successfully");
+            response.getWriter().write("<h1 class=\"success\">User created successfully</h1>");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("signup.html");
+            dispatcher.include(request, response);
+
         } else {
-            response.getWriter().write("Username already exists");
+        	response.getWriter().write("<h1 class=\"error\">Username already exists</h1>");
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("signup.html");
+        	dispatcher.include(request, response);
         }
     }
 
@@ -100,7 +109,7 @@ public class UserController extends HttpServlet {
                     newRole = RoleType.valueOf(newRoleParam.toUpperCase());
                 } catch (IllegalArgumentException e) {
                     response.getWriter().write("Invalid role provided");
-                    return; // Exit if the new role is invalid
+                    return; 
                 }
             }
 
@@ -111,15 +120,15 @@ public class UserController extends HttpServlet {
                     newGender = GenderType.valueOf(newGenderParam.toUpperCase());
                 } catch (IllegalArgumentException e) {
                     response.getWriter().write("Invalid gender provided");
-                    return; // Exit if the new gender is invalid
+                    return; 
                 }
             }
 
             user.setUserName(newUserName);
-            user.setRole(newRole); // Update with the new role
-            user.setFirstName(newFirstName); // Update first name
-            user.setLastName(newLastName); // Update last name
-            user.setGender(newGender); // Update gender
+            user.setRole(newRole); 
+            user.setFirstName(newFirstName); 
+            user.setLastName(newLastName); 
+            user.setGender(newGender); 
 
             userDao.updateUser(user);
             response.getWriter().write("User updated successfully");

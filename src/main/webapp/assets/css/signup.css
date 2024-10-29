@@ -25,6 +25,47 @@ header {
 	color: #fff;
 	padding: 5px 0;
 }
+.success {
+    background-color: #008000d6;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.error {
+    background-color: #ff0000d4; 
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+}
+.success, .error {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    animation: slideDown 30s ease forwards;
+    z-index: 1000; 
+}
+
+@keyframes slideDown {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        top: 50%;
+        opacity: 1;
+    }
+}
 
 .navbar {
 	display: flex;
