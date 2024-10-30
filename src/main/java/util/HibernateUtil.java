@@ -6,7 +6,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import models.*;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,12 +21,13 @@ public class HibernateUtil {
                         Configuration configuration = new Configuration();
                         Properties settings = new Properties();
 
+                        // Database connection settings
                         settings.setProperty(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                         settings.setProperty(Environment.URL, "jdbc:mysql://localhost:3306/auca_library_db");
                         settings.setProperty(Environment.USER, "root");
                         settings.setProperty(Environment.PASS, "");
                         settings.setProperty(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
-                        settings.setProperty(Environment.HBM2DDL_AUTO, "update"); 
+                        settings.setProperty(Environment.HBM2DDL_AUTO, "create"); 
                         settings.setProperty(Environment.SHOW_SQL, "true");
 
                         configuration.setProperties(settings);

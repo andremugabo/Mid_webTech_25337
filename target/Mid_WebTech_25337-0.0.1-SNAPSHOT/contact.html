@@ -1,76 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="ISO-8859-1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | AUCA Library Management System</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="assets/images/flav.png">
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | AUCA Library Management System</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="assets/images/flav.png">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <a class="logo" href="./">
-                <img alt="AUCA Logo" src="assets/images/flav.png">
-                <h1>Auca Library</h1>
-            </a>
-            <ul class="nav-links">
-                <li><a href="./">Home</a></li>
-                <li><a href="books.jsp">Books</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="user-actions">
-                <a href="login.html" class="btn">Login</a>
-                <a href="signup.html" class="btn">Sign Up</a>
-            </div>
-        </nav>
-    </header>
+	<header>
+		<nav class="navbar">
+			<a class="logo" href="./"> <img alt="AUCA Logo"
+				src="assets/images/flav.png">
+				<h1>Auca Library</h1>
+			</a>
+			<ul class="nav-links">
+				<li><a href="./">Home</a></li>
+				<li><a href="books.jsp">Books</a></li>
+				<li><a href="about.html">About Us</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+			<div class="user-actions">
+				<a href="login.html" class="btn">Login</a> <a href="signup.html"
+					class="btn">Sign Up</a>
+			</div>
+		</nav>
+	</header>
 
-    <main>
-        <div class="banner contact-banner">
-            <div class="banner-content">
-                <h2>Contact Us</h2>
-                <p>Get in touch with us for inquiries and support.</p>
-            </div>
-        </div>
+	<main>
+		<div class="banner contact-banner">
+			<div class="banner-content">
+				<h2>Contact Us</h2>
+				<p>Get in touch with us for inquiries and support.</p>
+			</div>
+		</div>
 
-        <section class="contact">
-    <h2>Contact Form</h2>
-    <div class="contact-container">
-        <form action="submitContactForm.jsp" method="post" class="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
+		<section class="contact">
+			<h2>Contact Us</h2>
+			<p>If you have any questions or inquiries, please feel free to
+				reach out to us through the contact form below or use the contact
+				details provided.</p>
 
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509032!2d144.9537353153189!3d-37.816279979751204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11c07d%3A0x5045675218ce6e6!2sYour%20Location!5e0!3m2!1sen!2sus!4v1626393032850!5m2!1sen!2sus" 
-                width="100%" 
-                height="300" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
-        </div>
-    </div>
-</section>
+			<div class="contact-details">
+				<h3>Get in Touch</h3>
+				<p>
+					<strong>Phone:</strong> <a href="tel:+1234567890">(+250)788
+						111-222</a>
+				</p>
+				<p>
+					<strong>Email:</strong> <a href="mailto:info@example.com">info@example.com</a>
+				</p>
+				<p>
+					<strong>Address:</strong> 123 Main Street, Gishushu, Sector, ZIP
+					Code
+				</p>
+			</div>
 
-    </main>
+			<div class="contact-container">
+				<form action="submitContactForm.jsp" method="post"
+					class="contact-form">
+					<label for="name">Name:</label> <input type="text" id="name"
+						name="name" placeholder="Your Full Name" required> <label
+						for="email">Email:</label> <input type="email" id="email"
+						name="email" placeholder="Your Email Address" required> <label
+						for="message">Message:</label>
+					<textarea id="message" name="message"
+						placeholder="Write your message here..." required></textarea>
 
-    <footer>
-        <p>
-            &copy; 2024 Auca Library Management System | <a href="privacy.html">Privacy Policy</a>
-        </p>
-    </footer>
-    <script src="assets/js/index.js"></script>
+					<button type="submit" class="btn">Send Message</button>
+				</form>
+
+				<div class="map-container">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.9266892934904!2d30.071876614841554!3d-1.9535538991866385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19d1c0f55ff4fb1d%3A0x7b9e07f285b5c493!2s24V3%2BJJH%2C%20Kigali!5e0!3m2!1sen!2srw!4v1698382328426!5m2!1sen!2srw"
+						width="100%" height="300" style="border: 0;" allowfullscreen=""
+						loading="lazy"> </iframe>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<p>
+			&copy; 2024 Auca Library Management System | <a href="privacy.html">Privacy
+				Policy</a>
+		</p>
+	</footer>
+	<script src="assets/js/index.js"></script>
 </body>
 </html>

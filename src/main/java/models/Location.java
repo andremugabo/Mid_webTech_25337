@@ -33,6 +33,8 @@ public class Location {
 
     @OneToMany(mappedBy = "village", cascade = CascadeType.ALL)
     private List<User> users;
+    
+    private boolean deleted;
 
     // Getters and Setters
 
@@ -90,5 +92,12 @@ public class Location {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

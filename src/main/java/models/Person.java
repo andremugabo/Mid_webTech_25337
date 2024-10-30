@@ -1,22 +1,20 @@
 package models;
 
 import java.util.UUID;
-
 import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class Person {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID personId;
-    
+
     @Column(nullable = false)
     private String firstName;
 
     @Column(nullable = false)
     private String lastName;
-    
 
     @Enumerated(EnumType.STRING)
     private GenderType gender;
@@ -24,25 +22,17 @@ public abstract class Person {
     @Column(nullable = false)
     private String phoneNumber;
 
-    public boolean isDeleted() {
-		return isDeleted;
-	}
+    @Column(name = "is_deleted", nullable = true)
+    private boolean isDeleted = false;
 
-	public void setDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-
-    @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted = false; 
-    
+    // Constructors
     public Person() {}
 
-    public Person(UUID personId, String firstName, String lastName, GenderType genderType, String phoneNumber) {
+    public Person(UUID personId, String firstName, String lastName, GenderType gender, String phoneNumber) {
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.gender = genderType;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
     }
 
@@ -75,8 +65,8 @@ public abstract class Person {
         return gender;
     }
 
-    public void setGender(GenderType genderType) {
-        this.gender = genderType;
+    public void setGender(GenderType gender) {
+        this.gender = gender;
     }
 
     public String getPhoneNumber() {
@@ -86,6 +76,12 @@ public abstract class Person {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
 }
-
-

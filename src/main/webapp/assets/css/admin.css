@@ -9,9 +9,7 @@ html, body {
     height: 100%;
     margin: 0;
 }
-h1 {
-    color: #333;
-}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4; 
@@ -27,7 +25,9 @@ header {
     padding: 15px 0;
     text-align: center;
 }
-
+.logo h1 {
+    color: white;
+}
 .container {
     display: flex;
     flex: 1;

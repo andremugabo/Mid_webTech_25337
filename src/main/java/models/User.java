@@ -10,14 +10,15 @@ public class User extends Person {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private RoleType role;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String userName;
 
     // Many-to-One relationship with Location, referencing the specific "village" Location for the user
     @ManyToOne
-    @JoinColumn(name = "village_id")
+    @JoinColumn(name = "village_id", nullable = true)
     private Location village;
 
     // One-to-Many relationship with Borrower, assuming "reader" in Borrower refers to User

@@ -2,8 +2,6 @@ package controller;
 
 import models.User;
 import dao.UserDao;
-import util.PasswordUtil;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -26,42 +24,38 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
-        String password = PasswordUtil.hashPassword(request.getParameter("password"));
+        String password = request.getParameter("password");
 
+        // Authenticate user
         User user = userDao.authenticateUser(username, password);
 
         if (user != null) {
-            // Session
-            HttpSession session = request.getSession(true); // Create a new session
+            // Create a new session or get the existing one
+            HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
-            session.setMaxInactiveInterval(3 * 60); 
+            session.setAttribute("role", user.getRole());
+            session.setMaxInactiveInterval(3 * 60); // 3 minutes
 
-            // persistent cookie for username
+            // Create a cookie for the username
             Cookie userCookie = new Cookie("username", username);
-            userCookie.setMaxAge(24 * 60 * 60); 
+            userCookie.setMaxAge(24 * 60 * 60); // 1 day
+            userCookie.setHttpOnly(true);  // Prevent JavaScript access to cookie
+            userCookie.setSecure(true);    // Ensure cookie is sent over HTTPS
             response.addCookie(userCookie);
 
-            // Redirect based on role
-            switch (user.getRole()) {
-                case LIBRARIAN:
-                    response.sendRedirect("librarianDashboard.jsp");
-                    break;
-                case STUDENT:
-                    response.sendRedirect("studentDashboard.jsp");
-                    break;
-                case TEACHER:
-                    response.sendRedirect("teacherDashboard.jsp");
-                    break;
-                case MANAGER:
-                    response.sendRedirect("managerDashboard.jsp");
-                    break;
-                default:
-                    response.sendRedirect("login.html");
-            }
+            // Log the user login activity
+            System.out.println("User logged in: " + username);
+            System.out.println("User role: " + user.getRole());
+
+            // Redirect to dashboard
+            response.sendRedirect("views/dashboard.jsp");
         } else {
+            // Login failed
+            System.out.println("Login attempt failed for username: " + username);
             request.setAttribute("errorMessage", "Invalid Username or Password");
+
+            // Forward to the login page with an error message
             request.getRequestDispatcher("login.html").forward(request, response);
         }
     }
-
 }

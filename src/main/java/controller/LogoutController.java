@@ -15,16 +15,38 @@ public class LogoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("Logout requested.");
+
+        
         HttpSession session = request.getSession(false);
         if (session != null) {
+            System.out.println("Invalidating session.");
             session.invalidate();
+        } else {
+            System.out.println("No session found to invalidate.");
         }
 
-        // Clear cookies
+        
         Cookie usernameCookie = new Cookie("username", null);
         usernameCookie.setMaxAge(0);
+        usernameCookie.setPath(request.getContextPath());
         response.addCookie(usernameCookie);
+        System.out.println("Deleted username cookie.");
 
-        response.sendRedirect("login.html");
+        
+        Cookie jsessionidCookie = new Cookie("JSESSIONID", null);
+        jsessionidCookie.setMaxAge(0);
+        jsessionidCookie.setPath(request.getContextPath());
+        response.addCookie(jsessionidCookie);
+        System.out.println("Deleted JSESSIONID cookie.");
+
+        
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+
+        
+        response.sendRedirect(request.getContextPath() + "/login.html");
+        System.out.println("Redirected to login page.");
     }
 }

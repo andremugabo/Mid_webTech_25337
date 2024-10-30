@@ -137,6 +137,205 @@ header {
 .quick-actions .btn:hover {
     background-color: #0056b3;
 }
+form {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #1b3058;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Table container styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header row styling */
+th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #0056b3;
+}
+
+/* Data row styling */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Row hover effect */
+tr:hover {
+    background-color: #f1faff;
+    transition: background-color 0.2s ease;
+}
+
+/* Alternate row colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Action link styling for Update and Delete */
+.action-link {
+    display: inline-block;
+    color: #ffffff;
+    background-color: #007bff; /* Blue background for Update */
+    padding: 6px 12px;
+    margin: 0 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.action-link:hover {
+    background-color: #0056b3;
+}
+
+/* Special styling for Delete action link */
+.action-link.delete {
+    background-color: #dc3545; /* Red background for Delete */
+}
+
+.action-link.delete:hover {
+    background-color: #c82333;
+}
+
+
+/* Adjustments for responsive view */
+@media (max-width: 600px) {
+    table {
+        font-size: 14px;
+    }
+    th, td {
+        padding: 8px;
+    }
+}
+
+/* Modal overlay style */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+    overflow: hidden;
+    transition: opacity 0.3s ease; /* Smooth fade-in/out effect */
+}
+
+/* Modal content styling */
+.modal-content {
+    position: relative;
+    background-color: #ffffff; /* White background */
+    margin: 10% auto; /* Center horizontally */
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%; /* Full width on small screens */
+    max-width: 600px; /* Limit width on larger screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    animation: slideDown 0.3s ease; /* Slide-in animation */
+}
+
+/* Slide-down animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Close button styling */
+.close-button {
+    color: #888;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333; /* Darker color on hover */
+}
+
+/* "Add New Location" button style */
+#openModal {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+}
+
+#openModal:hover {
+    background-color: #45a049;
+}
+
+/* For small screens, adjust modal content size */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%; /* Almost full width on small screens */
+        margin: 20% auto; /* More top margin for better viewing */
+    }
+}
+
 
 /* Footer */
 footer {
