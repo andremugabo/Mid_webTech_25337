@@ -1,6 +1,9 @@
 package models;
 
 import javax.persistence.*;
+
+import util.UUIDToBinaryConverter;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -8,27 +11,26 @@ import java.util.UUID;
 @Table(name = "Shelf")
 public class Shelf {
 
-    @Id
-    @GeneratedValue
-    private UUID shelfId;
+	@Id
+	@GeneratedValue
+	@Column(name = "shelfId", columnDefinition = "BINARY(16)") 
+	private UUID shelfId;
 
-    private int availableStock;
+	private int availableStock;
 
-    @Column(nullable = false)
-    private String bookCategory;
+	@Column(nullable = false)
+	private String bookCategory;
 
-    private int borrowedNumber;
+	private int borrowedNumber;
 
-    private int initialStock;
+	private int initialStock;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
+	@ManyToOne
+	@JoinColumn(name = "room_id")
+	private Room room;
 
-    @OneToMany(mappedBy = "shelf")
-    private List<Book> books;
-    
-    
+	@OneToMany(mappedBy = "shelf")
+	private List<Book> books;
 
 	public Shelf() {
 		super();
@@ -90,5 +92,4 @@ public class Shelf {
 		this.books = books;
 	}
 
-    
 }

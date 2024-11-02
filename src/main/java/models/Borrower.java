@@ -1,6 +1,9 @@
 package models;
 
 import javax.persistence.*;
+
+import util.UUIDToBinaryConverter;
+
 import java.util.UUID;
 import java.util.Date;
 
@@ -8,9 +11,10 @@ import java.util.Date;
 @Table(name = "Borrower")
 public class Borrower {
 
-    @Id
+	@Id
     @GeneratedValue
-    private UUID id;
+    @Column(name = "borrowerId", columnDefinition = "BINARY(16)")  
+    private UUID borrowerId;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
@@ -32,12 +36,14 @@ public class Borrower {
     @JoinColumn(name = "reader_id", nullable = false)
     private User reader;
 
-	public UUID getId() {
-		return id;
+	
+
+	public UUID getBorrowerId() {
+		return borrowerId;
 	}
 
-	public void setId(UUID id) {
-		this.id = id;
+	public void setBorrowerId(UUID borrowerId) {
+		this.borrowerId = borrowerId;
 	}
 
 	public Book getBook() {

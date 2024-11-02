@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -8,19 +9,20 @@ import java.util.UUID;
 @Table(name = "MembershipType")
 public class MembershipType {
 
-    @Id
-    @GeneratedValue
-    private UUID membershipTypeId;
+	@Id
+	@GeneratedValue
+	@Column(name = "mumbershipTypeId", columnDefinition = "BINARY(16)") 
+	private UUID membershipTypeId;
 
-    private int maxBooks;
+	private int maxBooks;
 
-    @Column(nullable = false)
-    private String membershipName;
+	@Column(nullable = false)
+	private String membershipName;
 
-    private int price;
+	private int price;
 
-    @OneToMany(mappedBy = "membershipType")
-    private List<Membership> memberships;
+	@OneToMany(mappedBy = "membershipType")
+	private List<Membership> memberships;
 
 	public MembershipType() {
 		super();
@@ -66,5 +68,4 @@ public class MembershipType {
 		this.memberships = memberships;
 	}
 
-    
 }

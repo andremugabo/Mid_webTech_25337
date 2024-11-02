@@ -8,96 +8,98 @@ import java.util.List;
 @Table(name = "location")
 public class Location {
 
-    @Id
-    @GeneratedValue
-    private UUID locationId;
+	@Id
+	@GeneratedValue
+	@Column(name = "locationId", columnDefinition = "BINARY(16)")
+	private UUID locationId;
 
-    @Column(nullable = false, unique = true)
-    private String locationCode;
+	@Column(nullable = false, unique = true)
+	private String locationCode;
 
-    @Column(nullable = false)
-    private String locationName;
+	@Column(nullable = false, unique = true)
+	private String locationName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private LocationType locationType;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private LocationType locationType;
 
-    // Self-referencing relationship for parent
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id", nullable = true) // Nullable for top-level locations
-    private Location parentLocation;
+	// Self-referencing relationship for parent
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "parent_id", referencedColumnName = "locationId", nullable = true)
+	private Location parentLocation;
 
-    // Self-referencing relationship for children
-    @OneToMany(mappedBy = "parentLocation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Location> childLocations;
+	// Self-referencing relationship for children
+	@OneToMany(mappedBy = "parentLocation", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Location> childLocations;
 
-    @OneToMany(mappedBy = "village", cascade = CascadeType.ALL)
-    private List<User> users;
-    
-    private boolean deleted;
+	@OneToMany(mappedBy = "village", cascade = CascadeType.ALL)
+	private List<User> users;
 
-    // Getters and Setters
+	private boolean deleted;
 
-    public UUID getLocationId() {
-        return locationId;
-    }
+	// Getters and Setters
 
-    public void setLocationId(UUID locationId) {
-        this.locationId = locationId;
-    }
+	public UUID getLocationId() {
+		return locationId;
+	}
 
-    public String getLocationCode() {
-        return locationCode;
-    }
+	public void setLocationId(UUID locationId) {
+		this.locationId = locationId;
+	}
 
-    public void setLocationCode(String locationCode) {
-        this.locationCode = locationCode;
-    }
+	public String getLocationCode() {
+		return locationCode;
+	}
 
-    public String getLocationName() {
-        return locationName;
-    }
+	public void setLocationCode(String locationCode) {
+		this.locationCode = locationCode;
+	}
 
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
-    }
+	public String getLocationName() {
+		return locationName;
+	}
 
-    public LocationType getLocationType() {
-        return locationType;
-    }
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
 
-    public void setLocationType(LocationType locationType) {
-        this.locationType = locationType;
-    }
+	public LocationType getLocationType() {
+		return locationType;
+	}
 
-    public Location getParentLocation() {
-        return parentLocation;
-    }
+	public void setLocationType(LocationType locationType) {
+		this.locationType = locationType;
+	}
 
-    public void setParentLocation(Location parentLocation) {
-        this.parentLocation = parentLocation;
-    }
+	public Location getParentLocation() {
+		return parentLocation;
+	}
 
-    public List<Location> getChildLocations() {
-        return childLocations;
-    }
+	public void setParentLocation(Location parentLocation) {
+		this.parentLocation = parentLocation;
+	}
 
-    public void setChildLocations(List<Location> childLocations) {
-        this.childLocations = childLocations;
-    }
+	public List<Location> getChildLocations() {
+		return childLocations;
+	}
 
-    public List<User> getUsers() {
-        return users;
-    }
+	public void setChildLocations(List<Location> childLocations) {
+		this.childLocations = childLocations;
+	}
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-    public boolean isDeleted() {
-        return deleted;
-    }
+	public List<User> getUsers() {
+		return users;
+	}
 
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 }

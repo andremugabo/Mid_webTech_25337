@@ -1,6 +1,9 @@
 package models;
 
 import javax.persistence.*;
+
+import util.UUIDToBinaryConverter;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -8,38 +11,37 @@ import java.util.UUID;
 @Table(name = "Membership")
 public class Membership {
 
-    @Id
-    @GeneratedValue
-    private UUID membershipId;
+	@Id
+	@GeneratedValue
+	@Column(name = "membershipId", columnDefinition = "BINARY(16)") 
+	private UUID membershipId;
 
-    private Date expiringTime;
+	private Date expiringTime;
 
-    @Column(nullable = false)
-    private String membershipCode;
+	@Column(nullable = false)
+	private String membershipCode;
 
-    @Column(nullable = false)
-    private Date registrationDate;
+	@Column(nullable = false)
+	private Date registrationDate;
 
-    @Enumerated(EnumType.STRING)
-    private Status membershipStatus;
+	@Enumerated(EnumType.STRING)
+	private Status membershipStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "reader_id")
-    private User reader;
+	@ManyToOne
+	@JoinColumn(name = "reader_id")
+	private User reader;
 
-    @ManyToOne
-    @JoinColumn(name = "membership_type_id")
-    private MembershipType membershipType;
-    
-    
+	@ManyToOne
+	@JoinColumn(name = "membership_type_id")
+	private MembershipType membershipType;
 
-    public Membership() {
+	public Membership() {
 		super();
 	}
 
 	public enum Status {
-        APPROVED, REJECTED, PENDING
-    }
+		APPROVED, REJECTED, PENDING
+	}
 
 	public UUID getMembershipId() {
 		return membershipId;
@@ -97,5 +99,4 @@ public class Membership {
 		this.membershipType = membershipType;
 	}
 
-    
 }

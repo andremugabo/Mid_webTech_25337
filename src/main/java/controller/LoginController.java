@@ -15,7 +15,7 @@ import java.io.IOException;
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDao userDao;
-
+   
     @Override
     public void init() throws ServletException {
         userDao = new UserDao();
@@ -25,36 +25,50 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
-        // Authenticate user
+        
+        System.out.print("  login here    ");
+        
         User user = userDao.authenticateUser(username, password);
 
         if (user != null) {
-            // Create a new session or get the existing one
+            
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
-            session.setMaxInactiveInterval(3 * 60); // 3 minutes
+            session.setMaxInactiveInterval(3 * 60); 
 
-            // Create a cookie for the username
+            
             Cookie userCookie = new Cookie("username", username);
-            userCookie.setMaxAge(24 * 60 * 60); // 1 day
-            userCookie.setHttpOnly(true);  // Prevent JavaScript access to cookie
-            userCookie.setSecure(true);    // Ensure cookie is sent over HTTPS
+            userCookie.setMaxAge(24 * 60 * 60); 
+            userCookie.setHttpOnly(true);  
+            userCookie.setSecure(true);    
             response.addCookie(userCookie);
 
-            // Log the user login activity
+           
             System.out.println("User logged in: " + username);
             System.out.println("User role: " + user.getRole());
 
-            // Redirect to dashboard
-            response.sendRedirect("views/dashboard.jsp");
+            
+            response.sendRedirect("dashboard.jsp");
         } else {
-            // Login failed
+            
             System.out.println("Login attempt failed for username: " + username);
             request.setAttribute("errorMessage", "Invalid Username or Password");
 
-            // Forward to the login page with an error message
+            
+            request.getRequestDispatcher("login.html").forward(request, response);
+        }
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("user") != null) {
+            
+            response.sendRedirect("dashboard.jsp");
+        } else {
+            
             request.getRequestDispatcher("login.html").forward(request, response);
         }
     }

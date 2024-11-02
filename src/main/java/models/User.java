@@ -15,7 +15,10 @@ public class User extends Person {
 
     @Column(nullable = false, unique = true)
     private String userName;
-
+    
+    @Column(nullable = true) 
+    private String picture;
+    
     // Many-to-One relationship with Location, referencing the specific "village" Location for the user
     @ManyToOne
     @JoinColumn(name = "village_id", nullable = true)
@@ -59,6 +62,14 @@ public class User extends Person {
         this.userName = userName;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+    
     public Location getVillage() {
         return village;
     }

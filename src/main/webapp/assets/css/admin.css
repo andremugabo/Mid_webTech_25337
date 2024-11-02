@@ -33,13 +33,12 @@ header {
     flex: 1;
 }
 
-/* Sidebar Styles */
+/* Sidebar Navigation */
 .sidebar {
-    width: 200px;
-    background-color: #1b3058; 
-    padding: 10px;
-    overflow-y: auto;
-    height: 100%;
+    width: 250px;
+    background-color: #1b3058;
+    color: white;
+    padding-top: 20px;
 }
 
 .sidebar nav ul {
@@ -48,26 +47,34 @@ header {
 }
 
 .sidebar nav ul li {
-    margin: 15px 0;
+    margin-bottom: 15px;
 }
 
 .sidebar nav ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px;
-    display: block; 
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
     transition: background-color 0.3s;
-    border-radius: 5px;
+}
+
+.sidebar nav ul li a i {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 18px;
 }
 
 .sidebar nav ul li a:hover {
-    background-color: #2a4b71; 
+    background-color: #004080;
+    color: #ff9800;
 }
 
 .sidebar nav ul li a.active {
-    background-color: #2a4b71; /* Active link style */
-    font-weight: bold; /* Emphasize the active link */
+    background-color: #004080;
+    color: #f1c40f;
+    font-weight: bold;
 }
+
 
 .sidebar nav ul li a.logout {
     color: #ff6666; /* Different color for logout to emphasize */
