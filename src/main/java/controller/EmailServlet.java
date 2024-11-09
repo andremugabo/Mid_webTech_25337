@@ -22,8 +22,8 @@ public class EmailServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(EmailServlet.class.getName());
 
-    private static final String EMAIL_USERNAME = "mugabowebtechtest@gmail.com";
-    private static final String EMAIL_PASSWORD = "yfmo kesq pqbb xgid"; 
+    private static final String EMAIL_USERNAME = Config.getEmailUsername();
+    private static final String EMAIL_PASSWORD = Config.getEmailPassword();
 
     public void sendEmail(String to, String subject, String body) throws Exception {
         // Set up mail server properties

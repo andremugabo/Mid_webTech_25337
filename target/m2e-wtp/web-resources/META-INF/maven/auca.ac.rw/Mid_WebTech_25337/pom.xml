@@ -67,6 +67,12 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.13.3</version>
 		</dependency>
+		<dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>dotenv-java</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
 		<!-- Javax Mail API -->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
