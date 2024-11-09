@@ -41,9 +41,11 @@ public class EmailServlet extends HttpServlet {
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
+                logger.info("Authenticating with user: " + EMAIL_USERNAME);
                 return new PasswordAuthentication(EMAIL_USERNAME, EMAIL_PASSWORD);
             }
         });
+
 
         try {
             // Create a new email message
@@ -52,7 +54,7 @@ public class EmailServlet extends HttpServlet {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
             message.setText(body);
-
+            
             // Send email
             Transport.send(message);
             logger.info("Email sent successfully to " + to);

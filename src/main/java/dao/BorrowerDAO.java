@@ -65,16 +65,6 @@ public class BorrowerDAO {
 		}
 	}
 
-	// Display all Borrowers
-	public List<Borrower> displayAll() {
-		try (Session session = HibernateUtil.getSession().openSession()) {
-			return session.createQuery("from Borrower where isDeleted = false", Borrower.class).list();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 	public long countBorrowedBooksByReaderWithStatus(UUID readerId, BookStatus status) {
 		Session session = HibernateUtil.getSession().openSession();
 		Transaction transaction = null;
@@ -104,6 +94,31 @@ public class BorrowerDAO {
 		}
 
 		return borrowedBooksCount;
+	}
+
+	// Select Borrowers by readerId
+	public List<Borrower> selectByReaderId(UUID readerId) {
+		try (Session session = HibernateUtil.getSession().openSession()) {
+			String hql = "FROM Borrower b WHERE b.reader.id = :readerId AND b.isDeleted = false";
+			Query<Borrower> query = session.createQuery(hql, Borrower.class);
+			query.setParameter("readerId", readerId);
+			return query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// Select all Borrowers
+	public List<Borrower> selectAllBorrowers() {
+		try (Session session = HibernateUtil.getSession().openSession()) {
+			String hql = "FROM Borrower WHERE isDeleted = false";
+			Query<Borrower> query = session.createQuery(hql, Borrower.class);
+			return query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

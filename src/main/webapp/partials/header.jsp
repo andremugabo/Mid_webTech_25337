@@ -63,10 +63,12 @@ if (userRole == null) {
 					%>
 					<li><a href="user?action=manageUsers" class="nav-link"><i
 							class="fas fa-user-cog"></i> Manage Users</a></li>
-					<li><a href="book?action=list" class="nav-link"><i
-							class="fas fa-book"></i> Manage Books</a></li>
 					<li><a href="location?action=manageLocations" class="nav-link"><i
 							class="fas fa-map-marker-alt"></i> Manage Locations</a></li>
+					<li><a href="book?action=list" class="nav-link"><i
+							class="fas fa-book"></i> Manage Books</a></li>
+					<li><a href="borrower?action=ReturnBorrowedBook" class="nav-link"><i
+							class="fas fa-users"></i> View and Manage Borrowers</a></li>
 					<li><a href="rooms?action=manageRooms" class="nav-link"><i
 							class="fas fa-door-open"></i> Manage Rooms</a></li>
 					<li><a href="shelves?action=manageShelfs" class="nav-link"><i
@@ -74,7 +76,7 @@ if (userRole == null) {
 					<li><a href="membershipType?action=list" class="nav-link"><i
 							class="fas fa-list-alt"></i> Membership Types</a></li>
 					<li><a href="librarianMembership?action=list" class="nav-link"><i
-							class="fas fa-list-alt"></i> Memberships</a></li>
+							class="fas fa-user-circle"></i> Memberships</a></li>
 					<%
 					}
 					%>
@@ -90,11 +92,12 @@ if (userRole == null) {
 					<%
 					if (userRole == RoleType.STUDENT || userRole == RoleType.TEACHER) {
 					%>
-					<li><a href="memberMembership?action=list" class="nav-link"><i
-							class="fas fa-id-card"></i>View Membership</a></li>
-					<li><a href="borrower.jsp" class="nav-link"><i
-							class="fas fa-id-card"></i>View Borrowed Book</a></li>
 
+					<li><a href="borrower?action=ViewBorrowedBook"
+						class="nav-link"><i class="fas fa-id-card"></i>View Borrowed
+							Book</a></li>
+					<li><a href="memberMembership?action=list" class="nav-link"><i
+							class="fas fa-user-circle"></i> View Membership</a></li>
 					<li><a href="settings.jsp" class="nav-link"><i
 							class="fas fa-cog"></i> Settings</a></li>
 					<%
