@@ -215,7 +215,7 @@ Mid_WebTech_25337/
 
 
 ### 4. Librarian Dashboard
-![Uploading image.png…]()
+![Librarian](https://via.placeholder.com/800x400)
 ---
 
 ## License
