@@ -204,11 +204,18 @@ Mid_WebTech_25337/
 
 
 ### 2. User Dashboard
-![Dashboard](https://via.placeholder.com/800x400)
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/ce4b7d66-47cc-4ce1-a9be-ff695d91a7b0">
+
 
 ### 3. Librarian Dashboard
-![Librarian](https://via.placeholder.com/800x400)
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/60fde4b7-c0f4-4c82-8d0f-b4b0ba08f244">
+------------------------------------------------------------------------------------------------------------------
+<img width="960" alt="image" src="https://github.com/user-attachments/assets/587e36e4-0615-4521-ad4e-7f43fb27ac37">
 
+
+
+### 4. Librarian Dashboard
+![Uploading image.png…]()
 ---
 
 ## License
