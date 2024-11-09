@@ -3,21 +3,16 @@ package util;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Config {
-    private static final Dotenv dotenv = Dotenv.load();
+    // Load environment variables from .env file
+    private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-    public static String getDbUsername() {
-        return dotenv.get("DB_USERNAME");
-    }
-
-    public static String getDbPassword() {
-        return dotenv.get("DB_PASSWORD");
-    }
-
+    // Retrieve email username from environment variables
     public static String getEmailUsername() {
-        return dotenv.get("EMAIL_USERNAME");
+        return dotenv.get("EMAIL_USERNAME", "defaultEmailUsername"); 
     }
 
+    // Retrieve email password from environment variables
     public static String getEmailPassword() {
-        return dotenv.get("EMAIL_PASSWORD");
+        return dotenv.get("EMAIL_PASSWORD", "defaultEmailPassword"); 
     }
 }

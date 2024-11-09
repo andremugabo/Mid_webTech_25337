@@ -5,6 +5,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import util.Config;
+
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -22,6 +25,7 @@ public class EmailServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(EmailServlet.class.getName());
 
+    // Email credentials from Config class
     private static final String EMAIL_USERNAME = Config.getEmailUsername();
     private static final String EMAIL_PASSWORD = Config.getEmailPassword();
 
@@ -54,7 +58,7 @@ public class EmailServlet extends HttpServlet {
             logger.info("Email sent successfully to " + to);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Failed to send email", e);
-            throw e; // Rethrow to handle in the doPost method
+            throw e;
         }
     }
 
