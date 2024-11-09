@@ -3,19 +3,22 @@
 <%@ page import="models.Location"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.UUID"%>
-<%@ page import="models.Location"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="partials/header.jsp"%>
 
 
 <main>
-	<h2>
-		Manage Locations -
-		<%=userRole%></h2>
+	<div class="main_title">
 
-	<h3>
+		<h2>
+			Manage Locations -
+			<%=userRole%></h2>
+
+
 		<button id="openModal">Add New Location</button>
-	</h3>
+
+	</div>
+
 
 	<!-- Modal Structure -->
 	<div id="locationModal" class="modal">
@@ -45,8 +48,8 @@
 			</form>
 		</div>
 	</div>
-	<p>Number of Locations: ${listLocation.size()}</p>
-	
+	<p>Number of Locations: ${locationList.size()}</p>
+
 	<h3>Existing Locations</h3>
 	<table>
 		<thead>
@@ -60,7 +63,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="location" items="${listLocation}">
+			<c:forEach var="location" items="${locationList}">
 				<tr>
 					<td>${location.locationId}</td>
 					<td>${location.locationCode}</td>

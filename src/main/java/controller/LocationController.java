@@ -3,6 +3,7 @@ package controller;
 import dao.LocationDao;
 import models.Location;
 import models.LocationType;
+import models.RoleType;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class LocationController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LocationDao locationDao;
+    RequestDispatcher dispatcher;
 
     @Override
     public void init() throws ServletException {
@@ -72,7 +74,7 @@ public class LocationController extends HttpServlet {
 
         locationDao.createLocation(location);
         response.getWriter().write("<h1 class=\"success\">Location created successfully</h1>");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("locationManagement.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("location?action=manageLocations");
         dispatcher.forward(request, response);
     }
 
@@ -139,10 +141,21 @@ public class LocationController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Location> locationList = locationDao.listAllLocations();
-        System.out.println("Retrieved Locations: " + locationList.size());
-
-        request.setAttribute("listLocation", locationList);
-        request.getRequestDispatcher("locationManagement.jsp").forward(request, response);
+    	String action = request.getParameter("action");
+    	
+    	switch(action) {
+    	case"manageLocations":
+    		RoleType userRole =(RoleType) request.getSession().getAttribute("role");
+    		List<Location> locationList = locationDao.listAllLocations();
+    		request.setAttribute("locationList", locationList);
+    		request.setAttribute("userRole", userRole);
+    		dispatcher = request.getRequestDispatcher("locationManagement.jsp");
+    		dispatcher.forward(request,response);
+    	default:
+    		dispatcher = request.getRequestDispatcher("login.html");
+			dispatcher.include(request, response);
+    		
+    		
+    	}
     }
 }

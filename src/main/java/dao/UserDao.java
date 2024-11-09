@@ -105,6 +105,8 @@ public class UserDao {
 			return 0;
 		}
 	}
+	
+	
 
 	// List all users who are not deleted
 	public List<User> listAllUsers() {

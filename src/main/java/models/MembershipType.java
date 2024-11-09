@@ -11,12 +11,12 @@ public class MembershipType {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "mumbershipTypeId", columnDefinition = "BINARY(16)") 
+	@Column(name = "membershipTypeId", columnDefinition = "BINARY(16)") 
 	private UUID membershipTypeId;
 
 	private int maxBooks;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String membershipName;
 
 	private int price;

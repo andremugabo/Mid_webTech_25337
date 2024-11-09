@@ -15,26 +15,36 @@ public class User extends Person {
 
     @Column(nullable = false, unique = true)
     private String userName;
-    
+
     @Column(nullable = true) 
-    private String picture;
-    
+    private String picture;  
+
     // Many-to-One relationship with Location, referencing the specific "village" Location for the user
     @ManyToOne
     @JoinColumn(name = "village_id", nullable = true)
     private Location village;
 
     // One-to-Many relationship with Borrower, assuming "reader" in Borrower refers to User
-    @OneToMany(mappedBy = "reader")
+    @OneToMany(mappedBy = "reader", fetch = FetchType.LAZY)
     private List<Borrower> borrowers;
 
     // One-to-Many relationship with Membership, assuming "reader" in Membership refers to User
-    @OneToMany(mappedBy = "reader")
+    @OneToMany(mappedBy = "reader", fetch = FetchType.LAZY)
     private List<Membership> memberships;
 
     // Constructors
     public User() {
         super();
+    }
+
+    // Parameterized constructor
+    public User(String password, RoleType role, String userName, String picture, Location village) {
+        super(); // Calls the Person constructor
+        this.password = password;
+        this.role = role;
+        this.userName = userName;
+        this.picture = picture;
+        this.village = village;
     }
 
     // Getters and Setters
@@ -69,7 +79,7 @@ public class User extends Person {
     public void setPicture(String picture) {
         this.picture = picture;
     }
-    
+
     public Location getVillage() {
         return village;
     }

@@ -1,8 +1,12 @@
 package controller;
 
+import dao.RoomDAO;
 import dao.ShelfDao;
+import models.RoleType;
+import models.Room;
 import models.Shelf;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,77 +19,100 @@ import java.util.UUID;
 @WebServlet("/shelves")
 public class ShelfController extends HttpServlet {
 
-   
 	private static final long serialVersionUID = 1L;
 	private ShelfDao shelfDao;
+	private RoomDAO roomDao;
+	Room room;
+	RequestDispatcher dispatcher;
 
-    @Override
-    public void init() throws ServletException {
-        shelfDao = new ShelfDao();
-    }
+	@Override
+	public void init() throws ServletException {
+		shelfDao = new ShelfDao();
+		roomDao = new RoomDAO();
+		room = new Room();
+	}
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        
-        if (action != null && action.equals("edit")) {
-            // Handle edit request
-            String shelfId = request.getParameter("shelfId");
-            Shelf shelf = shelfDao.getShelfById(UUID.fromString(shelfId));
-            request.setAttribute("shelf", shelf);
-            request.getRequestDispatcher("editShelf.jsp").forward(request, response);
-        } else {
-            // Default action to list all shelves
-            List<Shelf> shelves = shelfDao.getAllShelves();
-            request.setAttribute("shelves", shelves);
-            request.getRequestDispatcher("shelves.jsp").forward(request, response);
-        }
-    }
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String action = request.getParameter("action");
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Add a new shelf
-        String bookCategory = request.getParameter("bookCategory");
-        int initialStock = Integer.parseInt(request.getParameter("initialStock"));
-        int availableStock = initialStock;
+		switch (action) {
+		case "manageShelfs":
+			RoleType userRole = (RoleType) request.getSession().getAttribute("role");
+			if (userRole == null) {
+				response.sendRedirect(request.getContextPath() + "login.html");
+				return;
+			}
+			List<Shelf> shelfList = shelfDao.getAllShelves();
+			List<Room> roomList = roomDao.findAll();
+			request.setAttribute("shelfList", shelfList);
+			request.setAttribute("userRole", userRole);
+			request.setAttribute("roomList",roomList);
+			dispatcher = request.getRequestDispatcher("shelves.jsp");
+			dispatcher.forward(request, response);
+			break;
+		default:
+			dispatcher = request.getRequestDispatcher("login.html");
+			dispatcher.include(request, response);
 
-        Shelf shelf = new Shelf();
-        shelf.setBookCategory(bookCategory);
-        shelf.setInitialStock(initialStock);
-        shelf.setAvailableStock(availableStock);
-        shelfDao.addShelf(shelf);
+		}
+	}
 
-        response.sendRedirect("shelves");
-    }
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Add a new shelf
+		String bookCategory = request.getParameter("bookCategory");
+		int initialStock = Integer.parseInt(request.getParameter("initialStock"));
+		Integer availableStock = 0;
+		String shelfCode = request.getParameter("shelfCode");
+		
+		
+		
+		room = roomDao.findById(UUID.fromString(request.getParameter("roomId")));
+		 
+		Shelf shelf = new Shelf();
+		shelf.setBookCategory(bookCategory);
+		shelf.setInitialStock(initialStock);
+		shelf.setAvailableStock(availableStock);
+		shelf.setRoom(room);
+		shelf.setShelfCode(shelfCode);
+		shelfDao.addShelf(shelf);
 
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Update an existing shelf
-        String shelfId = request.getParameter("shelfId");
-        String bookCategory = request.getParameter("bookCategory");
-        int initialStock = Integer.parseInt(request.getParameter("initialStock"));
-        int availableStock = Integer.parseInt(request.getParameter("availableStock"));
+		response.sendRedirect("shelves?action=manageShelfs");
+	}
 
-        Shelf shelf = shelfDao.getShelfById(UUID.fromString(shelfId));
-        if (shelf != null) {
-            shelf.setBookCategory(bookCategory);
-            shelf.setInitialStock(initialStock);
-            shelf.setAvailableStock(availableStock);
-            shelfDao.updateShelf(shelf);
-        }
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Update an existing shelf
+		String shelfId = request.getParameter("shelfId");
+		String bookCategory = request.getParameter("bookCategory");
+		int initialStock = Integer.parseInt(request.getParameter("initialStock"));
+		int availableStock = Integer.parseInt(request.getParameter("availableStock"));
 
-        response.sendRedirect("shelves");
-    }
+		Shelf shelf = shelfDao.getShelfById(UUID.fromString(shelfId));
+		if (shelf != null) {
+			shelf.setBookCategory(bookCategory);
+			shelf.setInitialStock(initialStock);
+			shelf.setAvailableStock(availableStock);
+			shelfDao.updateShelf(shelf);
+		}
 
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Delete a shelf
-        String shelfId = request.getParameter("shelfId");
+		response.sendRedirect("shelves");
+	}
 
-        if (shelfId != null) {
-            shelfDao.deleteShelf(UUID.fromString(shelfId));
-        }
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Delete a shelf
+		String shelfId = request.getParameter("shelfId");
 
-        response.sendRedirect("shelves");
-    }
+		if (shelfId != null) {
+			shelfDao.deleteShelf(UUID.fromString(shelfId));
+		}
+
+		response.sendRedirect("shelves");
+	}
 }

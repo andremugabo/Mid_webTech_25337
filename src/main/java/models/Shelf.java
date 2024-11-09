@@ -2,8 +2,6 @@ package models;
 
 import javax.persistence.*;
 
-import util.UUIDToBinaryConverter;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +11,7 @@ public class Shelf {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "shelfId", columnDefinition = "BINARY(16)") 
+	@Column(name = "shelfId", columnDefinition = "BINARY(16)")
 	private UUID shelfId;
 
 	private int availableStock;
@@ -24,6 +22,9 @@ public class Shelf {
 	private int borrowedNumber;
 
 	private int initialStock;
+
+	@Column(name = "shelfCode", nullable = true, unique = true)
+	private String shelfCode;
 
 	@ManyToOne
 	@JoinColumn(name = "room_id")
@@ -71,6 +72,14 @@ public class Shelf {
 	public int getInitialStock() {
 		return initialStock;
 	}
+	
+	public String getShelfCode() {
+        return shelfCode;
+    }
+
+    public void setShelfCode(String shelfCode) {
+        this.shelfCode = shelfCode;
+    }
 
 	public void setInitialStock(int initialStock) {
 		this.initialStock = initialStock;

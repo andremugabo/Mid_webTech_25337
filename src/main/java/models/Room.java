@@ -2,8 +2,6 @@ package models;
 
 import javax.persistence.*;
 
-import util.UUIDToBinaryConverter;
-
 import java.util.List;
 import java.util.UUID;
 

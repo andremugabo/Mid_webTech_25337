@@ -33,10 +33,15 @@ public class UserController extends HttpServlet {
 		userDao = new UserDao();
 	}
 
-	// Handle user creation, updates, and deletion
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
+
+		
+		if (action == null) {
+			response.getWriter().write("Action parameter is missing");
+			return;
+		}
 
 		switch (action) {
 		case "create":
@@ -148,7 +153,8 @@ public class UserController extends HttpServlet {
 		response.sendRedirect("profile.jsp?userId=" + userId);
 	}
 
-	private void handleUserUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	private void handleUserUpdate(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		UUID userId = UUID.fromString(request.getParameter("userId"));
 		User user = userDao.selectUser(userId);
 
@@ -210,7 +216,7 @@ public class UserController extends HttpServlet {
 			List<User> userList = userDao.listAllUsers();
 			request.setAttribute("userList", userList);
 			request.setAttribute("userRole", userRole);
-		    dispatcher = request.getRequestDispatcher("manageUsers.jsp");
+			dispatcher = request.getRequestDispatcher("manageUsers.jsp");
 			dispatcher.forward(request, response);
 			break;
 
@@ -225,7 +231,7 @@ public class UserController extends HttpServlet {
 					User user = userDao.selectUser(UUID.fromString(userId));
 					if (user != null) {
 						request.setAttribute("user", user);
-					    dispatcher = request.getRequestDispatcher("profile.jsp");
+						dispatcher = request.getRequestDispatcher("profile.jsp");
 						dispatcher.forward(request, response);
 					} else {
 						response.getWriter().write("User not found");

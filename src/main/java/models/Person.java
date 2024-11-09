@@ -3,8 +3,6 @@ package models;
 import java.util.UUID;
 import javax.persistence.*;
 
-import util.UUIDToBinaryConverter;
-
 @MappedSuperclass
 public abstract class Person {
 
@@ -40,7 +38,7 @@ public abstract class Person {
 		this.phoneNumber = phoneNumber;
 	}
 
-	// Getters and Setters
+	
 	public UUID getPersonId() {
 		return personId;
 	}

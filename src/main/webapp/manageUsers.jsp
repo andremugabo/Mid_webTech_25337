@@ -5,13 +5,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <main>
-	<h2>
-		Manage Users -
-		<%=userRole%></h2>
 
-	<h3>
+	<div class="main_title">
+		<h2>
+			Manage Users -
+			<%=userRole%>
+		</h2>
+
+
 		<button id="openModal">Add New User</button>
-	</h3>
+
+	</div>
+
+
 
 	<h3>Existing Users</h3>
 
@@ -23,7 +29,7 @@
 	</c:if>
 	<c:if test="${not empty sessionScope.message}">
 		<p style="color: green;">${sessionScope.message}</p>
-		
+
 		<c:remove var="message" scope="session" />
 	</c:if>
 	<table>

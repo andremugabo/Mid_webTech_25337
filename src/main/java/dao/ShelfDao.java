@@ -77,4 +77,28 @@ public class ShelfDao {
             e.printStackTrace();
         }
     }
+
+	// Increment the available stock of a shelf by 1
+    public void incrementAvailableStock(UUID shelfId) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSession().openSession()) {
+            transaction = session.beginTransaction();
+            Shelf shelf = session.get(Shelf.class, shelfId);
+            if (shelf != null) {
+               
+                shelf.setAvailableStock(shelf.getAvailableStock() + 1);                
+                session.update(shelf);
+                transaction.commit();
+            } else {
+                System.out.println("Shelf with ID " + shelfId + " not found.");
+            }
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
 }

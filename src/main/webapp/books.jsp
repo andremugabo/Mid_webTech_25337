@@ -46,184 +46,28 @@
 				<label for="genre-filter">Filter by Genre:</label> <select
 					id="genre-filter" onchange="filterBooksByGenre()">
 					<option value="all">All Genres</option>
-					<option value="Genre Name">Genre Name</option>
-					<option value="Another Genre">Another Genre</option>
-					<!-- Add more genres here -->
+					<c:forEach var="genre" items="${shelfList}">
+						<option value="${genre.shelfId}">${genre.bookCategory}</option>
+					</c:forEach>
 				</select>
 			</div>
 
-
 			<div class="book-list">
-				<!-- Sample Book Item -->
-				<div class="book-item" data-genre="Genre Name"
-					style="background-image: url('assets/images/book1.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Genre Name</p>
-						<p>Available Copies: 5</p>
-						<a href="#" class="btn">Borrow</a>
+				<!-- Loop through available books dynamically -->
+				<c:forEach var="book" items="${bookList}">
+					<div class="book-item" data-genre="${book.shelf_id}"
+						style="background-image: url('${book.imageUrl}');">
+						<div class="book-details">
+							<h3>${book.title}</h3>
+							<p>Author: ${book.author}</p>
+							<p>Genre: ${book.genre}</p>
+							<p>Available Copies: ${book.availableCopies}</p>
+							<a href="borrowBook?bookId=${book.bookId}" class="btn">Borrow</a>
+						</div>
 					</div>
-				</div>
-				
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				<div class="book-item" data-genre="Another Genre"
-					style="background-image: url('assets/images/book2.jpg');">
-					<div class="book-details">
-						<h3>Another Book Title</h3>
-						<p>Author: Another Author</p>
-						<p>Genre: Another Genre</p>
-						<p>Available Copies: 3</p>
-						<a href="#" class="btn">Borrow</a>
-					</div>
-				</div>
-				
-				
-				
-				
+				</c:forEach>
 			</div>
 		</section>
-
-
 	</main>
 
 	<footer>
@@ -232,6 +76,22 @@
 				Policy</a>
 		</p>
 	</footer>
-	<script src="assets/js/index.js"></script>
+
+
+	<!-- JavaScript for Filter and Modal Logic -->
+	<script>
+        function filterBooksByGenre() {
+            const genre = document.getElementById('genre-filter').value;
+            const books = document.querySelectorAll('.book-item');
+
+            books.forEach(book => {
+                if (genre === 'all' || book.dataset.genre === genre) {
+                    book.style.display = 'block';
+                } else {
+                    book.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

@@ -2,8 +2,6 @@ package models;
 
 import javax.persistence.*;
 
-import util.UUIDToBinaryConverter;
-
 import java.util.*;
 import java.util.UUID;
 
@@ -19,20 +17,20 @@ public class Book {
 	@Enumerated(EnumType.STRING)
 	private BookStatus bookStatus;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String image;
 
 	private int edition;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String isbnCode;
 
 	private Date publicationYear;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String publisherName;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String title;
 
 	@ManyToOne

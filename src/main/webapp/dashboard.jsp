@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="partials/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <main>
 	<h2>
 		Dashboard Overview -
 		<%=userRole%></h2>
-
 	<div class="dashboard-container">
 		<div class="metrics">
 			<%

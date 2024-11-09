@@ -26,7 +26,7 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        System.out.print("  login here    ");
+        
         
         User user = userDao.authenticateUser(username, password);
 
@@ -35,6 +35,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
             session.setAttribute("role", user.getRole());
+            session.setAttribute("userId", user.getPersonId());
             session.setMaxInactiveInterval(3 * 60); 
 
             
@@ -46,10 +47,11 @@ public class LoginController extends HttpServlet {
 
            
             System.out.println("User logged in: " + username);
+            System.out.println("User ID: " + user.getPersonId());
             System.out.println("User role: " + user.getRole());
 
             
-            response.sendRedirect("dashboard.jsp");
+            request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
         } else {
             
             System.out.println("Login attempt failed for username: " + username);

@@ -3,6 +3,10 @@
 <%@ include file="partials/header.jsp" %>
 
 <main>
+<div class="main_title">
+
+
+</div>
     <h2>Membership Report</h2>
 
     <table>

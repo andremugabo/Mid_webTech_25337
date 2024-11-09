@@ -93,6 +93,12 @@ header {
 	font-size: 12px;
 }
 
+.main_title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 /* Dashboard Section */
 .dashboard {
 	display: flex;
@@ -157,15 +163,16 @@ header {
 .quick-actions .btn:hover {
 	background-color: #0056b3;
 }
+
 .image-preview img {
-    max-width: 150px; 
-    max-height: 150px; 
-    width: 100%; 
-    height: auto;
-    border-radius: 50%; 
-    border: 2px solid #ccc; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-    object-fit: cover; 
+	max-width: 150px;
+	max-height: 150px;
+	width: 100%;
+	height: auto;
+	border-radius: 50%;
+	border: 2px solid #ccc;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	object-fit: cover;
 }
 
 form {
@@ -182,7 +189,8 @@ label {
 	font-weight: bold;
 }
 
-input[type="text"], select {
+input[type="text"], select, input[type="number"], input[type="date"],
+	input[type="datetime-local"] {
 	width: 100%;
 	padding: 10px;
 	margin-bottom: 15px;
@@ -191,18 +199,22 @@ input[type="text"], select {
 	transition: border-color 0.3s;
 }
 
-input[type="text"]:focus, select:focus {
+input[type="text"]:focus, select:focus, input[type="number"]:focus,
+	input[type="date"]:focus, input[type="datetime-local"]:focus {
 	border-color: #1b3058;
 }
 
 button {
-	padding: 10px 15px;
-	background-color: #007bff;
+	background-color: #4CAF50; /* Green background */
 	color: white;
+	padding: 10px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	transition: background-color 0.3s;
+	font-size: 12px;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
@@ -210,71 +222,70 @@ button:hover {
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	overflow: hidden;
 }
 
 th {
-    background-color: #1b3058;
-    color: #ffffff;
-    font-weight: 600;
-    padding: 10px 15px;
-    text-align: left;
-    border-bottom: 2px solid #0056b3;
+	background-color: #1b3058;
+	color: #ffffff;
+	font-weight: 600;
+	padding: 5px 10px;
+	text-align: left;
+	border-bottom: 2px solid #0056b3;
+	text-align: center;
 }
 
 td {
-    padding: 2px;
-    border-bottom: 1px solid #ddd;
-    font-size: 12px;
-    text-align: center;
+	padding: 2px;
+	border-bottom: 1px solid #ddd;
+	font-size: 10px;
+	text-align: center;
 }
 
 tr:hover {
-    background-color: #e9f3fd;
-    transition: background-color 0.3s ease;
+	background-color: #e9f3fd;
+	transition: background-color 0.3s ease;
 }
 
 tr:nth-child(even) {
-    background-color: #f4faff;
+	background-color: #f4faff;
 }
 
-.action-link,
-.action-link-delete {
-    display: inline-block;
-    color: #ffffff;
-    padding: 3px 16px;
-    margin: 0 5px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 12px;
-    transition: background-color 0.3s ease, transform 0.2s;
+.action-link, .action-link-delete {
+	display: inline-block;
+	color: #ffffff;
+	padding: 3px 16px;
+	margin: 0 5px;
+	border-radius: 4px;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 10px;
+	transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .action-link {
-    background-color: #28a745;
+	background-color: #28a745;
 }
 
 .action-link:hover {
-    background-color: #218838;
-    transform: scale(1.05);
+	background-color: #218838;
+	transform: scale(1.05);
 }
 
 .action-link-delete {
-    background-color: #dc3545;
+	background-color: #dc3545;
 }
 
 .action-link-delete:hover {
-    background-color: #c82333;
-    transform: scale(1.05);
+	background-color: #c82333;
+	transform: scale(1.05);
 }
-
 
 .chart-section {
 	margin-top: 30px;
@@ -304,6 +315,76 @@ tr:nth-child(even) {
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	text-align: center;
+}
+
+.status-borrowed {
+	background-color: red;
+	font-weight: bold;
+	color: white;
+	padding: 3px;
+	border-radius: 5px;
+	font-size: 8px;
+}
+
+.status-reserved {
+	background-color: orange;
+	font-weight: bold;
+	color: white;
+	padding: 3px;
+	border-radius: 5px;
+	font-size: 8px;
+}
+
+.status-available {
+	background-color: green;
+	font-weight: bold;
+	color: white;
+	padding: 3px;
+	border-radius: 5px;
+	font-size: 8px;
+}
+
+.instruction-text {
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+	padding: 10px;
+	background-color: #031d3c6e;
+	border-left: 4px solid #0073e6;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+
+.summary {
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	padding: 20px;
+	margin-top: 20px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	width: 300px;
+	text-align: left;
+}
+
+.summary h3 {
+	font-size: 1.5em;
+	color: #007bff;
+	margin-bottom: 15px;
+}
+
+.summary p {
+	font-size: 1.1em;
+	margin: 8px 0;
+}
+
+.summary strong {
+	font-weight: bold;
+	color: #333;
+}
+
+.summary p:last-child {
+	font-size: 1.2em;
+	color: #28a745;
 }
 
 /* Adjustments for responsive view */
@@ -381,11 +462,11 @@ to {
 #openModal {
 	background-color: #4CAF50; /* Green background */
 	color: white;
-	padding: 10px 20px;
+	padding: 10px;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: bold;
 	transition: background-color 0.3s ease;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
@@ -393,6 +474,54 @@ to {
 
 #openModal:hover {
 	background-color: #45a049;
+}
+/* Additional styling for improved layout */
+.membership-form-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+}
+
+.membership-form label, .membership-form select, .membership-form input,
+	.submit-button {
+	display: block;
+	width: 100%;
+	margin: 10px 0;
+}
+
+.membership-form input, .membership-form select {
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+
+.submit-button {
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+	font-weight: bold;
+}
+
+.submit-button:hover {
+	background-color: #0056b3;
+}
+
+.membership-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+.membership-table th, .membership-table td {
+	padding: 10px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
 }
 
 /* For small screens, adjust modal content size */
