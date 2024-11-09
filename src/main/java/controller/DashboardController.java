@@ -60,21 +60,21 @@ public class DashboardController extends HttpServlet {
         request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
 
-    // Methods to fetch data
+   
     private int getTotalBooks() {
-        return 120; // Example placeholder
+        return 120; 
     }
 
     private int getTotalUsers() {
-        return 300; // Example placeholder
+        return 300; 
     }
 
     private int getTotalBorrowings() {
-        return 45; // Example placeholder
+        return 45; 
     }
 
     private int getOverdueBooks() {
-        return 10; // Example placeholder
+        return 10; 
     }
 
     private List<Activity> getRecentActivities() {

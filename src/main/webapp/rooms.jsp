@@ -7,20 +7,40 @@
 	<div class="main_title">
 		<h2>Manage Rooms</h2>
 
-
-		<button id="openModal">Add New Room</button>
+		<c:if
+			test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+			<button id="openModal">Add New Room</button>
+		</c:if>
 
 
 	</div>
 
+	<div class="room-finder">
+        <h3>Find Total Books in a Room</h3>
+        <form action="getBooksInRoom" method="get">
+            <label for="roomId">Room  ID:</label>
+            <input type="text" id="roomId" name="roomId" required>
+            <button type="submit">Find Total Books</button>
+        </form>
 
+        <c:if test="${not empty totalBooks}">
+            <div class="book-result">
+                <h4>Total Books in Room:</h4>
+                <p>${totalBooks}</p>
+            </div>
+        </c:if>
+    </div>
+	
 	<h3>Existing Rooms</h3>
 	<table>
 		<thead>
 			<tr>
 				<th>Room ID</th>
 				<th>Room Code</th>
-				<th>Actions</th>
+				<c:if
+					test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+					<th>Actions</th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,10 +48,14 @@
 				<tr>
 					<td>${room.roomId}</td>
 					<td>${room.roomCode}</td>
-					<td><a href="editRoom?roomId=${room.roomId}"
-						class="action-link">Edit</a> | <a
-						href="deleteRoom?roomId=${room.roomId}" class="action-link-delete"
-						onclick="return confirm('Are you sure?')">Delete</a></td>
+					<c:if
+						test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+						<td><a href="editRoom?roomId=${room.roomId}"
+							class="action-link">Edit</a> | <a
+							href="deleteRoom?roomId=${room.roomId}"
+							class="action-link-delete"
+							onclick="return confirm('Are you sure?')">Delete</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

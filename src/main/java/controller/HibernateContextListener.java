@@ -10,7 +10,6 @@ public class HibernateContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-       
         System.out.println("Application started. Hibernate SessionFactory is ready.");
     }
 

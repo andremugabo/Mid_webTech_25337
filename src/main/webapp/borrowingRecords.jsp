@@ -33,7 +33,10 @@
 				<th>Author</th>
 				<th>Status</th>
 				<th>Genre</th>
-				<th>Actions</th>
+				<c:if
+					test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+					<th>Actions</th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,14 +65,16 @@
                                 ${shelf.bookCategory} 
                             </c:if>
 						</c:forEach></td>
-					<td><c:choose>
-							<c:when test="${book.bookStatus == 'AVAILABLE'}">
-								<button onclick="openBorrowModal('${book.bookId}')"
-									class="action-link">Borrow</button>
-							</c:when>
-							<c:otherwise>
-								<span
-									style="
+					<c:if
+						test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+						<td><c:choose>
+								<c:when test="${book.bookStatus == 'AVAILABLE'}">
+									<button onclick="openBorrowModal('${book.bookId}')"
+										class="action-link">Borrow</button>
+								</c:when>
+								<c:otherwise>
+									<span
+										style="
             padding: 3px;
             color: white;
             border-radius: 5px;
@@ -82,9 +87,10 @@
                     <c:otherwise>grey</c:otherwise>
                 </c:choose>;
         ">
-									${book.bookStatus} </span>
-							</c:otherwise>
-						</c:choose></td>
+										${book.bookStatus} </span>
+								</c:otherwise>
+							</c:choose></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -97,8 +103,9 @@
 			<h3>Borrow Book</h3>
 			<form action="borrower" method="POST">
 				<input type="hidden" name="action" value="borrow"> <input
-					type="hidden" id="selectedBookId" name="bookId" value="${book.bookId}"> <input
-					type="hidden" name="readerId" value="<%=userIdString%>"><label
+					type="hidden" id="selectedBookId" name="bookId"
+					value="${book.bookId}"> <input type="hidden"
+					name="readerId" value="<%=userIdString%>"><label
 					for="pickupDate">Pick-Up Date:</label> <input type="date"
 					id="pickupDate" name="pickupDate" required> <label
 					for="returnDate">Return Date:</label> <input type="date"

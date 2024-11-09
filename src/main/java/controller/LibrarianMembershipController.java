@@ -43,7 +43,7 @@ public class LibrarianMembershipController extends HttpServlet {
 				handleApproved(request, response);
 				break;
 			case "delete":
-				handleRejected(request,response);
+				handleRejected(request, response);
 				break;
 			default:
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Unknown action: " + action);
@@ -101,7 +101,7 @@ public class LibrarianMembershipController extends HttpServlet {
 		UUID membershipId = UUID.fromString(request.getParameter("membershipId"));
 		membershipDAO.updateApprovedStatus(membershipId);
 		// Send email notification for approval
-	    sendStatusUpdateEmail(membershipId, "APPROVED");
+		sendStatusUpdateEmail(membershipId, "APPROVED");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("librarianMembership?action=list");
 		dispatcher.forward(request, response);
 	}
@@ -110,9 +110,9 @@ public class LibrarianMembershipController extends HttpServlet {
 			throws ServletException, IOException {
 
 		UUID membershipId = UUID.fromString(request.getParameter("membershipId"));
-		membershipDAO.updateRejectedStatus(membershipId); 
+		membershipDAO.updateRejectedStatus(membershipId);
 		// Send email notification for rejection
-	    sendStatusUpdateEmail(membershipId, "REJECTED");
+		sendStatusUpdateEmail(membershipId, "REJECTED");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("librarianMembership?action=list");
 		dispatcher.forward(request, response);
 	}
@@ -159,42 +159,27 @@ public class LibrarianMembershipController extends HttpServlet {
 			return "LM-0" + numMember;
 		return "LM-" + numMember;
 	}
-	
+
 	private void sendStatusUpdateEmail(UUID membershipId, String status) {
-	    
-	    Membership membership = membershipDAO.selectOne(membershipId);
-	    String readerEmail = membership.getReader().getUserName(); 
 
-	 // Set email details
-	    String subject = "Library Membership Status Update";
-	    String body = "<html>" +
-	                  "<body style='font-family: Arial, sans-serif; color: #333;'>" +
-	                  "<div style='width: 100%; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd;'>" +
-	                  "<div style='text-align: center; margin-bottom: 20px;'>" +
-	                  "<img src='https://auca.ac.rw/wp-content/uploads/2021/02/cropped-AUCA-logo-wide-webblue-2-1-1.png' alt='Library Logo' style='width: 120px;'>" +
-	                  "</div>" +
-	                  "<h2 style='color: #0056b3;'>Library Membership Status Update</h2>" +
-	                  "<p>Dear " + membership.getReader().getFirstName() + ",</p>" +
-	                  "<p>We wanted to inform you that your library membership status has been updated to: " +
-	                  "<strong style='color: #28a745;'>" + status + "</strong>.</p>" +
-	                  "<p>If you have any questions or need further assistance, please feel free to reach out to us.</p>" +
-	                  "<p>Thank you for being a valued member of our library community.</p>" +
-	                  "<p style='margin-top: 30px;'>Best regards,<br>" +
-	                  "<span style='color: #0056b3; font-weight: bold;'>The Library Team</span></p>" +
-	                  "</div>" +
-	                  "</body>" +
-	                  "</html>";
+		Membership membership = membershipDAO.selectOne(membershipId);
+		String readerEmail = membership.getReader().getUserName();
 
+		// Set email details
+		String subject = "Library Membership Status Update";
+		String body = String.format("Library Membership Status Update\n\n" + "Dear %s,\n\n"
+				+ "We wanted to inform you that your library membership status has been updated to: %s.\n\n"
+				+ "If you have any questions or need further assistance, please feel free to reach out to us.\n\n"
+				+ "Thank you for being a valued member of our library community.\n\n"
+				+ "Best regards,\nThe Library Team", membership.getReader().getFirstName(), status);
 
-
-	    // Send email using EmailServlet
-	    try {
-	        EmailServlet emailServlet = new EmailServlet();
-	        emailServlet.sendEmail(readerEmail, subject, body); 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+		// Send email using EmailServlet
+		try {
+			EmailServlet emailServlet = new EmailServlet();
+			emailServlet.sendEmail(readerEmail, subject, body);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
 
 }

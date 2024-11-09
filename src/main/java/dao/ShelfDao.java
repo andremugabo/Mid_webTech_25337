@@ -3,6 +3,8 @@ package dao;
 import models.Shelf;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import util.HibernateUtil;
 
 import java.util.List;
@@ -98,6 +100,25 @@ public class ShelfDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+        }
+    }
+    
+    public int getTotalBooksInRoom(UUID roomId) {
+        try (Session session = HibernateUtil.getSession().openSession()) {
+           
+            Query<Shelf> query = session.createQuery(
+                "SELECT s FROM Shelf s WHERE s.room.roomId = :roomId", Shelf.class);
+            query.setParameter("roomId", roomId);
+            
+            List<Shelf> shelves = query.list(); 
+            int totalBooks = 0;
+
+            
+            for (Shelf shelf : shelves) {
+                totalBooks += shelf.getAvailableStock();  
+            }
+
+            return totalBooks;  
         }
     }
 

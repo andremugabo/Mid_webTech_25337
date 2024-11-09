@@ -43,6 +43,7 @@
                 <tr>
                     <th>Membership ID</th>
                     <th>Membership Code</th>
+                    <th>Membership Type</th>
                     <th>Expiring Time</th>
                     <th>Registration Date</th>
                     <th>Status</th>
@@ -53,6 +54,7 @@
                     <td>${myMembership.membershipId}</td>
                     <td>${myMembership.membershipCode}</td>
                     <td>${myMembership.expiringTime}</td>
+                    <td>${myMembership.membershipType.membershipName}</td>
                     <td>${myMembership.registrationDate}</td>
                     <td>${myMembership.membershipStatus}</td>
                 </tr>

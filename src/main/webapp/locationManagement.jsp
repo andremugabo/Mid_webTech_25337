@@ -14,8 +14,10 @@
 			Manage Locations -
 			<%=userRole%></h2>
 
-
-		<button id="openModal">Add New Location</button>
+		<c:if
+			test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+			<button id="openModal">Add New Location</button>
+		</c:if>
 
 	</div>
 
@@ -26,7 +28,8 @@
 			<span class="close-button">&times;</span>
 			<h3>Add New Location</h3>
 			<form action="location" method="POST" id="locationForm">
-				<label for="locationCode">Location Code:</label> <input type="text"
+				<input type="hidden" name="action" value="createLocation"> <label
+					for="locationCode">Location Code:</label> <input type="text"
 					id="locationCode" name="locationCode" required> <label
 					for="locationName">Location Name:</label> <input type="text"
 					id="locationName" name="locationName" required> <label
@@ -59,7 +62,10 @@
 				<th>Location Name</th>
 				<th>Location Type</th>
 				<th>Parent Location ID</th>
-				<th>Actions</th>
+				<c:if
+					test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+					<th>Actions</th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -72,10 +78,14 @@
 					<td><c:if test="${location.parentLocation != null}">
                             ${location.parentLocation.locationId}
                         </c:if></td>
-					<td><a href="updateLocation?locationId=${location.locationId}"
-						class="action-link">Update</a> | <a
-						href="deleteLocation?locationId=${location.locationId}"
-						class="action-link-delete">Delete</a></td>
+					<c:if
+						test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+						<td><a
+							href="updateLocation?locationId=${location.locationId}"
+							class="action-link">Update</a> | <a
+							href="deleteLocation?locationId=${location.locationId}"
+							class="action-link-delete">Delete</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

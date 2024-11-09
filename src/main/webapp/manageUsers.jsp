@@ -13,7 +13,10 @@
 		</h2>
 
 
-		<button id="openModal">Add New User</button>
+		<c:if
+			test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+			<button id="openModal">Add New User</button>
+		</c:if>
 
 	</div>
 
@@ -40,7 +43,10 @@
 				<th>Email</th>
 				<th>Role</th>
 				<th>Gender</th>
-				<th>Actions</th>
+				<c:if
+					test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+					<th>Actions</th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -51,10 +57,13 @@
 					<td>${user.phoneNumber}</td>
 					<td>${user.role}</td>
 					<td>${user.gender}</td>
-					<td><a href="#" class="action-link"
-						onclick="openUpdateModal('${user.personId}', '${user.userName}', '${user.phoneNumber}', '${user.role}', '${user.gender}')">Update</a>
-						| <a href="user?action=deleteUser&userId=${user.personId}"
-						class="action-link-delete">Delete</a></td>
+					<c:if
+						test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+						<td><a href="#" class="action-link"
+							onclick="openUpdateModal('${user.personId}', '${user.userName}', '${user.phoneNumber}', '${user.role}', '${user.gender}')">Update</a>
+							| <a href="user?action=deleteUser&userId=${user.personId}"
+							class="action-link-delete">Delete</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 			<c:if test="${empty userList}">
@@ -66,25 +75,38 @@
 	</table>
 </main>
 
-<!-- Modal Structure for Adding New User -->
+
 <div id="userModal" style="display: none;">
 	<div class="modal-content">
 		<span class="close-button">&times;</span>
 		<h2>Add New User</h2>
-		<form action="addUser" method="POST">
+		<form action="user" method="POST">
+			<input type="hidden" name="action" value="addUser"> <label
+				for="firstName">First Name:</label> <input type="text"
+				id="firstName" name="firstName" required /> <label for="lastName">Last
+				Name:</label> <input type="text" id="lastName" name="lastName" required />
 			<label for="username">Username:</label> <input type="text"
-				id="username" name="username" required> <label for="email">Email:</label>
-			<input type="email" id="email" name="email" required> <label
-				for="role">Role:</label> <select id="role" name="role" required>
+				id="username" name="username" required> <label
+				for="phoneNumber">Phone Number:</label> <input type="text"
+				id="phoneNumber" name="phoneNumber" required /> <label
+				for="password">Password:</label> <input type="password"
+				id="password" name="password" required /> <label for="role">Role:</label>
+			<select id="role" name="role" required>
+				<option value="" selected="selected">Select Role</option>
 				<option value="STUDENT">Student</option>
+				<option value="MANAGER">Manager</option>
 				<option value="TEACHER">Teacher</option>
-				<option value="ADMIN">Admin</option>
+				<option value="DEAN">Dean</option>
+				<option value="HOD">Head of Department</option>
+				<option value="LIBRARIAN">Librarian</option>
+				<option value="REGISTER">Register</option>
 			</select> <label for="gender">Gender:</label> <select id="gender"
 				name="gender" required>
 				<option value="MALE">Male</option>
 				<option value="FEMALE">Female</option>
-				<option value="OTHER">Other</option>
+
 			</select>
+
 			<button type="submit">Add User</button>
 		</form>
 	</div>
@@ -154,4 +176,24 @@
 	function closeUpdateModal() {
 		document.getElementById("updateModal").style.display = "none";
 	}
+	
+	 document.addEventListener("DOMContentLoaded", function() {
+	        
+	        const successMessage = document.querySelector('.success');
+	        const errorMessage = document.querySelector('.error');
+
+	       
+	        if (successMessage) {
+	            successMessage.style.display = 'block';
+	        }
+	        if (errorMessage) {
+	            errorMessage.style.display = 'block';
+	        }
+
+	        
+	        setTimeout(() => {
+	            if (successMessage) successMessage.remove();
+	            if (errorMessage) errorMessage.remove();
+	        }, 2000);
+	    });
 </script>

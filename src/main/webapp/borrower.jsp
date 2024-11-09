@@ -10,8 +10,8 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Borrower ID</th>
-				<th>Book ID</th>
+				<!--<th>Borrower ID</th>-->
+				<!--<th>Book ID</th>-->
 				<th>Book Title</th>
 				<th>Borrow Date</th>
 				<th>Due Date</th>
@@ -22,18 +22,19 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="history" items="${borrowHistory}">
+		<% int totalBooksBorrowed =0;int totalFines =0; int totalLateFees = 0; %>
+			<c:forEach var="history" items="${borrowerById}">
 				<tr>
-					<td>${history.borrowerId}</td>
-					<td>${history.book.bookId}</td>
+					<!--  <td>${history.borrowerId}</td>-->
+					<!-- <td>${history.book.bookId}</td>-->
 					<td>${history.book.title}</td>
 					<td>${history.pickupDate}</td>
 					<td>${history.dueDate}</td>
-					<td>${history.returnDate != null ? history.returnDate : "Not Returned"}</td>
+					<td>${history.return_date != null ? history.return_date : "Not Returned"}</td>
 					<td>${history.fine}</td>
 					<td>${history.lateChargeFees}</td>
 					<td><c:choose>
-							<c:when test="${history.returnDate != null}">
+							<c:when test="${history.return_date != null}">
                                 Returned
                             </c:when>
 							<c:otherwise>
@@ -55,7 +56,7 @@
 			<strong>Total Fines:</strong> ${totalFines}
 		</p>
 		<p>
-			<strong>Total Late Charge Fees:</strong> ${totalLateFees}
+			<!-- <strong>Total Late Charge Fees:</strong> ${totalLateFees} -->
 		</p>
 	</div>
 

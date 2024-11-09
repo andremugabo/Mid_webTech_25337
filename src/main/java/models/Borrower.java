@@ -35,6 +35,10 @@ public class Borrower {
     @JoinColumn(name = "reader_id", nullable = false)
     private User reader;
     
+    @Column(nullable = true)
+    @Temporal(TemporalType.DATE)
+    private Date return_date;
+    
     @Column(name = "isDeleted")
     private boolean isDeleted;
 
@@ -60,7 +64,17 @@ public class Borrower {
     }
 
     
-    public UUID getBorrowerId() {
+    public Date getReturn_date() {
+		return return_date;
+	}
+
+
+	public void setReturn_date(Date return_date) {
+		this.return_date = return_date;
+	}
+
+
+	public UUID getBorrowerId() {
         return borrowerId;
     }
 

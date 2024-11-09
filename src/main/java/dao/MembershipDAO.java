@@ -134,6 +134,30 @@ public class MembershipDAO {
 	    }
 	}
 	
+	public Membership.Status getMembershipStatus(UUID readerId) {
+	    try (Session session = HibernateUtil.getSession().openSession()) {
+	        System.out.println("Executing query for readerId: " + readerId);
+
+	       
+	        Query<Membership.Status> query = session.createQuery(
+	            "SELECT m.membershipStatus FROM Membership m WHERE m.reader.personId = :readerId", 
+	            Membership.Status.class
+	        );
+	        query.setParameter("readerId", readerId);
+
+	        Membership.Status status = query.uniqueResult(); 
+	        System.out.println("Fetched status: " + status);  
+	        return status;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;  
+	    }
+	}
+
+
+
+	}
+
 	
 
-}
+

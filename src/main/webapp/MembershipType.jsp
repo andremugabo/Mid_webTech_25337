@@ -1,64 +1,75 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="partials/header.jsp"%>
 
 <main>
-    <div class="main_title">
-        <h2>Manage Users - <%=userRole%></h2>
-        <button id="openMembershipModal">Add New Membership Type</button>
-    </div>
+	<div class="main_title">
+		<h2>
+			Manage Users -
+			<%=userRole%></h2>
+		<c:if
+			test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+			<button id="openMembershipModal">Add New Membership Type</button>
+		</c:if>
+	</div>
 
-    <h2>Membership Type Management</h2>
+	<h2>Membership Type Management</h2>
 
-    <!-- Modal Structure for Adding/Editing Membership Type -->
-    <div id="membershipTypeModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h3 id="modalTitle">Add New Membership Type</h3>
-            <form action="membershipType" method="POST" id="membershipForm">
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="membershipTypeId" id="membershipTypeId">
-                
-                <label for="membershipName">Membership Name:</label>
-                <input type="text" id="membershipName" name="membershipName" required>
+	<!-- Modal Structure for Adding/Editing Membership Type -->
+	<div id="membershipTypeModal" class="modal">
+		<div class="modal-content">
+			<span class="close-button">&times;</span>
+			<h3 id="modalTitle">Add New Membership Type</h3>
+			<form action="membershipType" method="POST" id="membershipForm">
+				<input type="hidden" name="action" value="add"> <input
+					type="hidden" name="membershipTypeId" id="membershipTypeId">
 
-                <label for="maxBooks">Max Books:</label>
-                <input type="number" id="maxBooks" name="maxBooks" required>
+				<label for="membershipName">Membership Name:</label> <input
+					type="text" id="membershipName" name="membershipName" required>
 
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" required>
-                
-                <button type="submit">Save Membership Type</button>
-            </form>
-        </div>
-    </div>
+				<label for="maxBooks">Max Books:</label> <input type="number"
+					id="maxBooks" name="maxBooks" required> <label for="price">Price:</label>
+				<input type="number" id="price" name="price" required>
 
-    <h3>Existing Membership Types</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Membership Type ID</th>
-                <th>Membership Name</th>
-                <th>Max Books</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="membershipType" items="${listMembershipTypes}">
-                <tr>
-                    <td>${membershipType.membershipTypeId}</td>
-                    <td>${membershipType.membershipName}</td>
-                    <td>${membershipType.maxBooks}</td>
-                    <td>${membershipType.price}</td>
-                    <td>
-                        <a href="javascript:void(0);" onclick="populateEditForm('${membershipType.membershipTypeId}', '${membershipType.membershipName}', ${membershipType.maxBooks}, ${membershipType.price});" class="action-link">Edit</a> |
-                        <a href="deleteMembershipType?membershipTypeId=${membershipType.membershipTypeId}" class="action-link-delete">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+				<button type="submit">Save Membership Type</button>
+			</form>
+		</div>
+	</div>
+
+	<h3>Existing Membership Types</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Membership Type ID</th>
+				<th>Membership Name</th>
+				<th>Max Books</th>
+				<th>Price</th>
+				<c:if
+					test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+					<th>Actions</th>
+				</c:if>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="membershipType" items="${listMembershipTypes}">
+				<tr>
+					<td>${membershipType.membershipTypeId}</td>
+					<td>${membershipType.membershipName}</td>
+					<td>${membershipType.maxBooks}</td>
+					<td>${membershipType.price}</td>
+					<c:if
+						test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+						<td><a href="javascript:void(0);"
+							onclick="populateEditForm('${membershipType.membershipTypeId}', '${membershipType.membershipName}', ${membershipType.maxBooks}, ${membershipType.price});"
+							class="action-link">Edit</a> | <a
+							href="deleteMembershipType?membershipTypeId=${membershipType.membershipTypeId}"
+							class="action-link-delete">Delete</a></td>
+					</c:if>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </main>
 
 <!-- JavaScript for Modal and Form Logic -->

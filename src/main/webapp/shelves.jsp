@@ -12,7 +12,10 @@
 			Manage Users -
 			<%=userRole%>
 		</h2>
-		<button id="createShelfBtn">Create Shelf</button>
+		<c:if
+			test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+			<button id="createShelfBtn">Create Shelf</button>
+		</c:if>
 
 	</div>
 	<h2>All Shelves</h2>
@@ -23,7 +26,10 @@
 				<th>Initial Stock</th>
 				<th>Available Stock</th>
 				<th>Borrowed Book</th>
-				<th>Actions</th>
+				<c:if
+					test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+					<th>Actions</th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,9 +39,12 @@
 					<td>${shelf.initialStock}</td>
 					<td>${shelf.availableStock}</td>
 					<td>${shelf.borrowedNumber}</td>
-					<td><a href="shelves?action=edit&shelfId=${shelf.shelfId}"
-						class="action-link">Edit</a> <a class="action-link-delete"
-						data-shelf-id="${shelf.shelfId}">Delete</a></td>
+					<c:if
+						test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+						<td><a href="shelves?action=edit&shelfId=${shelf.shelfId}"
+							class="action-link">Edit</a> <a class="action-link-delete"
+							data-shelf-id="${shelf.shelfId}">Delete</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -164,6 +164,30 @@ header {
 	background-color: #0056b3;
 }
 
+.book-result {
+    background-color: #f8f9fa;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-result h4 {
+    color: #28a745;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+}
+
+.book-result p {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+
 .image-preview img {
 	max-width: 150px;
 	max-height: 150px;
@@ -190,7 +214,7 @@ label {
 }
 
 input[type="text"], select, input[type="number"], input[type="date"],
-	input[type="datetime-local"] {
+	input[type="datetime-local"],input[type="email"],input[type="password"] {
 	width: 100%;
 	padding: 10px;
 	margin-bottom: 15px;
@@ -200,7 +224,7 @@ input[type="text"], select, input[type="number"], input[type="date"],
 }
 
 input[type="text"]:focus, select:focus, input[type="number"]:focus,
-	input[type="date"]:focus, input[type="datetime-local"]:focus {
+	input[type="date"]:focus, input[type="datetime-local"]:focus, input[type="email"]:focus, input[type="password"]:focus {
 	border-color: #1b3058;
 }
 
@@ -219,6 +243,30 @@ button {
 
 button:hover {
 	background-color: #0056b3;
+}
+.close-btn {
+  font-size: 24px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.close-btn:focus {
+  outline: none;
 }
 
 table {
@@ -286,6 +334,105 @@ tr:nth-child(even) {
 	background-color: #c82333;
 	transform: scale(1.05);
 }
+/* General Profile Container */
+.profile-container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-summary {
+    margin-bottom: 30px;
+}
+
+.profile-summary h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.profile-summary p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+}
+
+.profile-summary strong {
+    color: #333;
+}
+
+/* Profile Image Styling */
+.profile-image {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.profile-image h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.profile-image-thumbnail {
+    width: 150px; /* Reduced size */
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styling */
+button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Form Section Styling */
+.form-section {
+    display: none;
+    margin-top: 20px;
+}
+
+/* Profile Container Responsiveness */
+@media (max-width: 768px) {
+    .profile-container {
+        width: 90%;
+    }
+
+    .profile-summary h3 {
+        font-size: 22px;
+    }
+
+    .profile-summary p {
+        font-size: 14px;
+    }
+
+    .profile-image-thumbnail {
+        width: 120px;
+        height: 120px;
+    }
+}
+
 
 .chart-section {
 	margin-top: 30px;

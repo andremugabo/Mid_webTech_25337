@@ -7,7 +7,28 @@
 	<h2>
 		Dashboard Overview -
 		<%=userRole%></h2>
+
+	<!-- Province Finder Section -->
+	<div class="province-finder">
+		<h3>Find Province by Phone Number</h3>
+		<form action="findProvince" method="get">
+			<label for="phoneNumber">Phone Number:</label> <input type="text"
+				id="phoneNumber" name="phoneNumber" required>
+			<button type="submit">Find Province</button>
+		</form>
+
+		<c:if test="${not empty provinceName}">
+			<div class="province-result">
+				<h4>Province Result:</h4>
+				<p>${provinceName}</p>
+			</div>
+		</c:if>
+
+	</div>
+
+	<!-- Dashboard Content -->
 	<div class="dashboard-container">
+		<!-- Metrics Section -->
 		<div class="metrics">
 			<%
 			if ("ADMIN".equals(userRole) || "MANAGER".equals(userRole)) {
@@ -23,7 +44,6 @@
 			<%
 			}
 			%>
-
 			<%
 			if ("LIBRARIAN".equals(userRole) || "STUDENT".equals(userRole)) {
 			%>
@@ -34,7 +54,6 @@
 			<%
 			}
 			%>
-
 			<%
 			if ("ADMIN".equals(userRole)) {
 			%>
@@ -47,19 +66,7 @@
 			%>
 		</div>
 
-		<%
-		if ("ADMIN".equals(userRole) || "MANAGER".equals(userRole)) {
-		%>
-		<h2>Recent Activity</h2>
-		<ul class="activity-log">
-			<c:forEach var="activity" items="${recentActivities}">
-				<li>${activity.description}on${activity.date}</li>
-			</c:forEach>
-		</ul>
-		<%
-		}
-		%>
-		<!-- New Charts Section -->
+		<!-- Chart Section -->
 		<div class="chart-section">
 			<h3>Library Statistics</h3>
 			<div class="charts">
@@ -77,7 +84,6 @@
 				<%
 				}
 				%>
-
 				<%
 				if ("LIBRARIAN".equals(userRole)) {
 				%>
@@ -90,29 +96,13 @@
 				%>
 			</div>
 		</div>
-
-		<!-- Recent Activity for ADMIN and MANAGER -->
-		<%
-		if ("ADMIN".equals(userRole) || "MANAGER".equals(userRole)) {
-		%>
-		<h2>Recent Activity</h2>
-		<ul class="activity-log">
-			<c:forEach var="activity" items="${recentActivities}">
-				<li>${activity.description}on${activity.date}</li>
-			</c:forEach>
-		</ul>
-		<%
-		}
-		%>
 	</div>
-
 </main>
-
-
 
 <%@ include file="partials/footer.jsp"%>
 
 <script>
+	// Books Chart Configuration
 	const ctxBooks = document.getElementById('booksChart').getContext('2d');
 	const booksChart = new Chart(ctxBooks, {
 		type : 'bar',
@@ -120,7 +110,7 @@
 			labels : [ 'Available', 'Borrowed', 'Overdue' ],
 			datasets : [ {
 				label : 'Books',
-				data : [ 120, 45, 10 ], // Replace with actual data
+				data : [ 120, 45, 10 ],
 				backgroundColor : [ '#1b3058', '#007bff', '#dc3545' ]
 			} ]
 		},
@@ -134,6 +124,7 @@
 		}
 	});
 
+	// Users Chart Configuration
 	const ctxUsers = document.getElementById('usersChart').getContext('2d');
 	const usersChart = new Chart(ctxUsers, {
 		type : 'line',
@@ -141,7 +132,7 @@
 			labels : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul' ],
 			datasets : [ {
 				label : 'User Registrations',
-				data : [ 10, 20, 15, 30, 25, 35, 40 ], // Replace with actual data
+				data : [ 10, 20, 15, 30, 25, 35, 40 ],
 				fill : false,
 				borderColor : '#ff9800',
 				tension : 0.1

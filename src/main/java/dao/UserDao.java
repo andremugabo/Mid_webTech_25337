@@ -1,5 +1,7 @@
 package dao;
 
+import models.Location;
+import models.LocationType;
 import models.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,18 +49,17 @@ public class UserDao {
 
 	// Update user information
 	public void updateUser(User user) {
-	    Transaction transaction = null;
-	    try (Session session = sessionFactory.openSession()) {
-	        transaction = session.beginTransaction();
-	        session.merge(user); 
-	        transaction.commit();
-	    } catch (Exception e) {
-	        if (transaction != null)
-	            transaction.rollback();
-	        e.printStackTrace();
-	    }
+		Transaction transaction = null;
+		try (Session session = sessionFactory.openSession()) {
+			transaction = session.beginTransaction();
+			session.merge(user);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null)
+				transaction.rollback();
+			e.printStackTrace();
+		}
 	}
-
 
 	// Select a user by their UUID
 	public User selectUser(UUID userId) {
@@ -79,18 +80,18 @@ public class UserDao {
 			if (user != null) {
 				user.setDeleted(true);
 				session.update(user);
-				transaction.commit(); 
-				return true; 
+				transaction.commit();
+				return true;
 			} else {
-				
+
 				return false;
 			}
 		} catch (Exception e) {
 			if (transaction != null) {
-				transaction.rollback(); 
+				transaction.rollback();
 			}
 			e.printStackTrace();
-			return false; 
+			return false;
 		}
 	}
 
@@ -105,8 +106,6 @@ public class UserDao {
 			return 0;
 		}
 	}
-	
-	
 
 	// List all users who are not deleted
 	public List<User> listAllUsers() {
@@ -142,4 +141,75 @@ public class UserDao {
 			return null;
 		}
 	}
+
+	public boolean updateVillage(UUID userId, Location newVillage) {
+		Transaction transaction = null;
+		try (Session session = sessionFactory.openSession()) {
+			transaction = session.beginTransaction();
+			User user = session.get(User.class, userId);
+			if (user != null) {
+				user.setVillage(newVillage);
+				session.update(user);
+				transaction.commit();
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public Location getProvinceByPhoneNumber(String phoneNumber) {
+	    try (Session session = sessionFactory.openSession()) {
+	        String hql = "FROM User u WHERE u.phoneNumber = :phoneNumber AND u.isDeleted = false";
+	        Query<User> query = session.createQuery(hql, User.class);
+	        query.setParameter("phoneNumber", phoneNumber);
+	        
+	        User user = query.uniqueResult();
+	        
+	        if (user != null) {
+	            Location location = user.getVillage();
+	            while (location != null && location.getLocationType() != LocationType.PROVINCE) {
+	                location = location.getParentLocation();
+	            }
+	            return location;
+	        } else {
+	            logger.info("No user found with the provided phone number.");
+	            return null;
+	        }
+	    } catch (Exception e) {
+	        logger.error("Error finding province by phone number: {}", e.getMessage(), e);
+	        return null;
+	    }
+	}
+	
+	public boolean updateUserImage(UUID userId, String newImagePath) {
+	    Transaction transaction = null;
+	    try (Session session = sessionFactory.openSession()) {
+	        transaction = session.beginTransaction();
+	        User user = session.get(User.class, userId);
+	        if (user != null) {
+	            user.setPicture(newImagePath); 
+	            session.update(user);
+	            transaction.commit();
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    } catch (Exception e) {
+	        if (transaction != null) {
+	            transaction.rollback();
+	        }
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
+
+
 }

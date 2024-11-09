@@ -10,10 +10,11 @@
 		<h2>
 			Manage Books -
 			<%=userRole%></h2>
+		<c:if
+			test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
 
-
-		<button id="openModal">Add New Book</button>
-
+			<button id="openModal">Add New Book</button>
+		</c:if>
 	</div>
 
 
@@ -25,16 +26,13 @@
 			<h3>Add New Book</h3>
 			<form action="book" method="POST" id="bookForm">
 				<label for="title">Title:</label> <input type="text" id="title"
-					name="title" required> 
-				<label for="publisherName">Publisher Name:</label> <input
-					type="text" id="publisherName" name="publisherName" required>
-
-				<label for="publicationYear">Publication Year:</label> <input
-					type="date" id="publicationYear" name="publicationYear" required>
-
-				<label for="edition">Edition:</label> <input type="number"
-					id="edition" name="edition" min="1" required> <label
-					for="bookStatus">Book Status:</label> <select id="bookStatus"
+					name="title" required> <label for="publisherName">Publisher
+					Name:</label> <input type="text" id="publisherName" name="publisherName"
+					required> <label for="publicationYear">Publication
+					Year:</label> <input type="date" id="publicationYear"
+					name="publicationYear" required> <label for="edition">Edition:</label>
+				<input type="number" id="edition" name="edition" min="1" required>
+				<label for="bookStatus">Book Status:</label> <select id="bookStatus"
 					name="bookStatus" required>
 					<option value="">Select Status</option>
 					<option value="AVAILABLE">Available</option>
@@ -44,7 +42,7 @@
 					name="shelfId" required>
 					<option value="">Select Book Category</option>
 					<c:forEach var="shelf" items="${shelfList}">
-					<option value="${shelf.shelfId}">${shelf.bookCategory}</option>
+						<option value="${shelf.shelfId}">${shelf.bookCategory}</option>
 					</c:forEach>
 				</select> <label for="image">Image URL:</label> <input type="text" id="image"
 					name="image">
@@ -65,7 +63,10 @@
 				<th>Edition</th>
 				<th>Status</th>
 				<th>Shelf ID</th>
-				<th>Actions</th>
+				<c:if
+					test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+					<th>Actions</th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -79,10 +80,13 @@
 					<td>${book.edition}</td>
 					<td>${book.bookStatus}</td>
 					<td><c:if test="${book.shelf != null}">${book.shelf.bookCategory}</c:if></td>
-					<td><a href="updateBook?bookId=${book.bookId}"
-						class="action-link">Update</a> | <a
-						href="deleteBook?bookId=${book.bookId}" class="action-link-delete">Delete</a>
-					</td>
+					<c:if
+						test="${!(userRole == 'HOD' || userRole == 'DEAN' || userRole == 'REGISTER' || userRole == 'MANAGER')}">
+						<td><a href="updateBook?bookId=${book.bookId}"
+							class="action-link">Update</a> | <a
+							href="deleteBook?bookId=${book.bookId}"
+							class="action-link-delete">Delete</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>

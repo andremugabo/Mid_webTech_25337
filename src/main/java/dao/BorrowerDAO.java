@@ -65,16 +65,6 @@ public class BorrowerDAO {
 		}
 	}
 
-	// Display all Borrowers
-	public List<Borrower> displayAll() {
-		try (Session session = HibernateUtil.getSession().openSession()) {
-			return session.createQuery("from Borrower where isDeleted = false", Borrower.class).list();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 	public long countBorrowedBooksByReaderWithStatus(UUID readerId, BookStatus status) {
 		Session session = HibernateUtil.getSession().openSession();
 		Transaction transaction = null;
@@ -105,5 +95,61 @@ public class BorrowerDAO {
 
 		return borrowedBooksCount;
 	}
+
+	// Select Borrowers by readerId
+	public List<Borrower> selectByReaderId(UUID readerId) {
+		try (Session session = HibernateUtil.getSession().openSession()) {
+			String hql = "FROM Borrower b WHERE b.reader.id = :readerId AND b.isDeleted = false";
+			Query<Borrower> query = session.createQuery(hql, Borrower.class);
+			query.setParameter("readerId", readerId);
+			return query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// Select all Borrowers
+	public List<Borrower> selectAllBorrowers() {
+		try (Session session = HibernateUtil.getSession().openSession()) {
+			String hql = "FROM Borrower WHERE isDeleted = false";
+			Query<Borrower> query = session.createQuery(hql, Borrower.class);
+			return query.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	public boolean canBorrowMoreBooks(UUID readerId, int membershipLimit) {
+	    Session session = HibernateUtil.getSession().openSession();
+	    Transaction transaction = null;
+	    long activeBorrowCount = 0;
+
+	    try {
+	        transaction = session.beginTransaction();
+
+	        // Count active borrowings for the reader
+	        String hql = "SELECT COUNT(b) FROM Borrower b " +
+	                     "WHERE b.reader.personId = :readerId AND b.return_date IS NULL AND b.isDeleted = false";
+	        Query<Long> query = session.createQuery(hql, Long.class);
+	        query.setParameter("readerId", readerId);
+
+	        activeBorrowCount = query.getSingleResult();
+
+	        transaction.commit();
+	    } catch (Exception e) {
+	        if (transaction != null) {
+	            transaction.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        session.close();
+	    }
+
+	    return activeBorrowCount < membershipLimit;
+	}
+
 
 }

@@ -3,16 +3,23 @@ package util;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Config {
-    // Load environment variables from .env file
     private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-    // Retrieve email username from environment variables
     public static String getEmailUsername() {
-        return dotenv.get("EMAIL_USERNAME", "defaultEmailUsername"); 
+        String emailUsername = dotenv.get("EMAIL_USERNAME", "defaultEmailUsername");
+        System.out.println("EMAIL_USERNAME: " + emailUsername);  
+        return emailUsername;
     }
 
-    // Retrieve email password from environment variables
     public static String getEmailPassword() {
-        return dotenv.get("EMAIL_PASSWORD", "defaultEmailPassword"); 
+        String emailPassword = dotenv.get("EMAIL_PASSWORD", "defaultEmailPassword");
+        System.out.println("EMAIL_PASSWORD: " + emailPassword);  
+        return emailPassword;
+    }
+    public static void main(String []args) {
+    	System.out.println("Email Username: " + getEmailUsername());
+    	System.out.println("Email Password: " + getEmailPassword());
+
     }
 }
+
