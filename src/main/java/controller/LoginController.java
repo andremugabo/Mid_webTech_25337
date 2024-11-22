@@ -1,8 +1,6 @@
 package controller;
 
-import models.Location;
 import models.User;
-import dao.LocationDao;
 import dao.UserDao;
 
 import javax.servlet.RequestDispatcher;
@@ -14,13 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDao userDao;
-    private LocationDao locationDao;
     RequestDispatcher dispatcher;
    
     @Override

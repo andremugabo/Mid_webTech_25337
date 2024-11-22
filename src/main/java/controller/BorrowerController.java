@@ -104,7 +104,6 @@ public class BorrowerController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "login.html");
 			return;
 		}
-
 		List<Borrower> allBorrowedBook = borrowerDAO.selectAllBorrowers();
 		request.setAttribute("listBorrowers", allBorrowedBook);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("borrowerManagement.jsp");
