@@ -73,7 +73,7 @@ Ensure you have the following installed:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/auca-library-system.git
+   git clone https://github.com/andremugabo/Mid_webTech_25337.git
    ```
 
 2. **Navigate to the project directory**:
